@@ -1,4 +1,5 @@
 /**
+ * @author: Wxj
  * 给出一个长度为n的数列，请计算这个数列中长度不超过k的严格递增子序列的个数；
  * 因为答案可能很大，所以请输出答案对2^61-1的模数；
  * 子序列是指从最初序列通过去除某些元素但不破坏余下元素的相对位置(在前或在后)而形成的新序列；
@@ -40,7 +41,7 @@ public class PerfectString {
     }
 
     /*
-    生成所有子序列
+    生成所有子序列，递归，回溯，索引index变化
      */
     public static void dfs(int index, int k, int n, int[] nums, List<List<Integer>> res, List<Integer> sub) {
         res.add(new ArrayList<>(sub)); //向容器中添加子序列
@@ -58,11 +59,11 @@ public class PerfectString {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入");
         List<Integer> list = new ArrayList<>();
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        int[] nums = new int[n];
+        int n = sc.nextInt(); //获取n
+        int k = sc.nextInt(); //获取k
+        int[] nums = new int[n]; //数组
         for (int i = 0; i < n; i++) {
-            nums[i] = sc.nextInt();
+            nums[i] = sc.nextInt(); //数组赋值
         }
         solution(n, k, nums);
         System.out.println(solution(n, k, nums));
