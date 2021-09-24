@@ -5,14 +5,17 @@
  * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现；
  * 你可以按任意顺序返回答案。
  * <p>输入描述:
- * nums = [2,7,11,15], target = 9；
+ * nums = [2,7,11,15]
+ * target = 9
  * <p>输出描述:
  * [0,1]
  */
 
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class SumOfDouble {
@@ -31,13 +34,16 @@ public class SumOfDouble {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String str = sc.next().toString();
+        System.out.print("nums=");
+        String input = sc.nextLine();
+        String str = input.substring(1, input.length() - 1);
         String[] arr = str.split(",");
-        int[] nums = new int[arr.length - 1];
+        int[] nums = new int[arr.length];
         for (int i = 0; i < nums.length; i++) {
             nums[i] = Integer.parseInt(arr[i]);
         }
-        int target = Integer.parseInt(arr[arr.length - 1]);
+        System.out.print("target=");
+        int target = sc.nextInt();
         System.out.println(Arrays.toString(solution(nums, target)));
     }
 }
