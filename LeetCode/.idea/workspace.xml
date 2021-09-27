@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82ebab90-b823-42a8-b600-6f8baa87876a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../untitled/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled/src/w.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled/untitled.iml" afterDir="false" />
-    </list>
+    <list default="true" id="82ebab90-b823-42a8-b600-6f8baa87876a" name="Default Changelist" comment="Default Changelist" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,19 +26,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="LeetCode" />
       <method v="2">
@@ -69,6 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1631685610949</updated>
       <workItem from="1631685612438" duration="1187000" />
+      <workItem from="1632554129976" duration="87000" />
     </task>
     <servers />
   </component>
@@ -85,6 +69,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
