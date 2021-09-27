@@ -4,12 +4,13 @@
  * 因为答案可能很大，所以请输出答案对2^61-1的模数；
  * 子序列是指从最初序列通过去除某些元素但不破坏余下元素的相对位置(在前或在后)而形成的新序列；
  * 例如：对于数列[1,2,3,4]，[1,3, 4]是它的子序列，但[1,4,3]不是。
- * <p>输入描述:
- * 先在一行中给出两个正整数n,k，含义如题面描述所示；
- * 接下来在新的一行给出n个以空格分隔的正整数a1, a2...an，代表数列里的元素；
  * (1≤n≤10^5，1≤k≤70，ai≤10^9)
+ * <p>输入描述:
+ * n=3
+ * k=1
+ * nums=1 2 3
  * <p>输出描述:
- * 对于每组数据在一行输出一个整数代表满足条件的子序列个数对2^61-1的模。
+ * 3
  */
 package com.company;
 
@@ -57,10 +58,12 @@ public class PerfectString {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("请输入");
         List<Integer> list = new ArrayList<>();
+        System.out.print("n=");
         int n = sc.nextInt(); //获取n
+        System.out.print("k=");
         int k = sc.nextInt(); //获取k
+        System.out.print("nums:");
         int[] nums = new int[n]; //数组
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt(); //数组赋值
