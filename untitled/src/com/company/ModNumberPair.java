@@ -1,6 +1,6 @@
 /**
  * @author: Wxj
- * 在自然数序列1~n中任意选择两个不同的数x和y，求满足x%y=k（%：取模）的（x，y）的对数；
+ * 在自然数序列 1~n 中任意选择两个不同的数 x 和 y ，求满足 x%y=k（%：取模）的（x，y）的对数；
  * （1≤t≤100，1<=n，k≤10^6)
  * <p>输入描述：
  * t=2
@@ -15,8 +15,10 @@ package com.company;
 import java.util.Scanner;
 
 public class ModNumberPair {
+
     public static int solution(int n, int k) {
         int count = 0;  //计数器
+
         for (int x = 1; x < n + 1; x++) {
             for (int y = 1; y < n + 1; y++) {
                 if (x != y && x % y == k) {

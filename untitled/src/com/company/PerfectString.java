@@ -1,7 +1,7 @@
 /**
  * @author: Wxj
- * 给出一个长度为n的数列，请计算这个数列中长度不超过k的严格递增子序列的个数；
- * 因为答案可能很大，所以请输出答案对2^61-1的模数；
+ * 给出一个长度为 n 的数列，请计算这个数列中长度不超过 k 的严格递增子序列的个数；
+ * 因为答案可能很大，所以请输出答案对 2^61-1 的模数；
  * 子序列是指从最初序列通过去除某些元素但不破坏余下元素的相对位置(在前或在后)而形成的新序列；
  * 例如：对于数列[1,2,3,4]，[1,3, 4]是它的子序列，但[1,4,3]不是。
  * (1≤n≤10^5，1≤k≤70，ai≤10^9)
@@ -19,10 +19,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PerfectString {
+
     public static int solution(int n, int k, int[] nums) {
         List<List<Integer>> res = new ArrayList<>(); //子序列容器
         List<Integer> sub = new ArrayList<>(); //子序列
+
         dfs(0, k, n, nums, res, sub); //生成所有子序列
+
         List<List<Integer>> resSolution = new ArrayList<>(); //最终的子序列链表
         for (int i = 0; i < res.size(); i++) {
             List<Integer> subSolution = res.get(i); //从生成的所有子序列中取出当前子序列
