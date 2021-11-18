@@ -332,7 +332,7 @@ class ManageLinkedList {
         if (node1 == null) return node2;
         if (node2 == null) return node1;
 
-        Node result = headNode; // 结果存储链表
+        Node result = null; // 结果存储链表
 
         // 原链表有序，依次比较，递归
         if (node1.num < node2.num) {
