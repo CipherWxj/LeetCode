@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [7,0,8]
  */
-package com.company.addlists;
+package com.company.brush.addlists;
 
 import java.util.ArrayList;
 import java.util.Arrays;

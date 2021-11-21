@@ -1,4 +1,4 @@
-package com.company.addlists;
+package com.company.brush.addlists;
 
 public class ListNode {
     int val;

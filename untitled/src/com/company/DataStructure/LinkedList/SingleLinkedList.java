@@ -169,7 +169,7 @@ class ManageLinkedList {
          * 根据 num 修改节点
          */
         if (headNode.next == null) {
-            System.out.printf("链表为空！");
+            System.out.print("链表为空！");
         }
 
         Node temp = headNode; // 辅助节点指针

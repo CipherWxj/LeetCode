@@ -7,7 +7,7 @@
  * <p>输出描述:
  * true
  */
-package com.company;
+package com.company.brush;
 
 
 import java.util.Scanner;

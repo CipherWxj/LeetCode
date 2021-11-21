@@ -12,7 +12,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company;
+package com.company.brush;
 
 import java.util.ArrayList;
 import java.util.List;

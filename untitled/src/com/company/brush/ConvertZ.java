@@ -11,7 +11,7 @@
  * <p>输出描述:
  * PAHNAPLSIIGYIR
  */
-package com.company;
+package com.company.brush;
 
 import java.util.ArrayList;
 import java.util.List;

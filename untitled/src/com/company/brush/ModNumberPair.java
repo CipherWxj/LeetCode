@@ -10,7 +10,7 @@
  * 4
  * 5
  */
-package com.company;
+package com.company.brush;
 
 import java.util.Scanner;
 
