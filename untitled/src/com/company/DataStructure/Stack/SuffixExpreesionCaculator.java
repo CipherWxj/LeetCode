@@ -3,7 +3,7 @@ package com.company.DataStructure.Stack;
 import java.util.*;
 import java.util.Stack;
 
-public class PostfixExpressionCaculator {
+public class SuffixExpreesionCaculator {
     /**
      * 后缀表达式
      * 从左往右扫描，遇到数字直接入栈；
