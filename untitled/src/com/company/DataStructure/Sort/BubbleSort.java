@@ -21,7 +21,6 @@ public class BubbleSort {
 
         // 测试冒泡排序
         bubbleSort(arr);
-
     }
 
     public static void bubbleSort(int[] arr) {
