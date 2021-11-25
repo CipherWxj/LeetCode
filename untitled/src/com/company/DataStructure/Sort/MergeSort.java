@@ -3,7 +3,7 @@ package com.company.DataStructure.Sort;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MergetSort {
+public class MergeSort {
 	/**
 	 * 归并排序
 	 */
