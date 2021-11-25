@@ -27,7 +27,7 @@ public class SelectSort {
 		/**
 		 * 选择排序  最大的数放在最后
 		 */
-		// 选择排序 的时间复杂度 O(n^2)
+
 		for (int i = 0; i < arr.length - 1; i++) {
 			int minIndex = i; // 最小值位置索引
 			int min = arr[i]; // 临时存储最小值

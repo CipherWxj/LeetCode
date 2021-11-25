@@ -27,7 +27,7 @@ public class BubbleSort {
         /**
          * 冒泡排序  最大的数放在最后
          */
-        // 冒泡排序 的时间复杂度 O(n^2)
+
         int temp = 0; // 临时变量
         boolean flag = false; // 标识变量，表示是否进行过交换
         for (int i = 0; i < arr.length - 1; i++) {

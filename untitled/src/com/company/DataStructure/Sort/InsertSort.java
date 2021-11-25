@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class InsertSort {
+    /**
+     * 插入排序
+     */
 
     public static void main(String[] args) {
 
@@ -26,7 +29,7 @@ public class InsertSort {
          */
         int insertVal = 0; // 插入值
         int insertIndex = 0; // 插入位置
-        // 插入排序 的时间复杂度 O(n^2)
+
         for (int i = 1; i < arr.length; i++) { // 第一位默认，从第二个数开始
 
             insertVal = arr[i]; // 取出无序表中的数
