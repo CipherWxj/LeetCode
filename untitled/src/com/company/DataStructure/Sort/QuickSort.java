@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class QuickSort {
     /**
-     * 希尔排序
+     * 快速排序
      */
 
     public static void main(String[] args) {
@@ -26,6 +26,9 @@ public class QuickSort {
     public static void quickSort(int[] arr, int left, int right) {
         /**
          * 快速排序
+         * @param arr 待排序的数组
+         * @param left 左边起始位置
+         * @param right 右边起始位置
          */
         int l = left; // 左下标
         int r = right; // 右下标
