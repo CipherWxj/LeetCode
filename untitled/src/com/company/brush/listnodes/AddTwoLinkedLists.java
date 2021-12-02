@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [7,0,8]
  */
-package com.company.brush.addlists;
+package com.company.brush.listnodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,25 +44,34 @@ public class AddTwoLinkedLists {
     }
 
     public static void main(String[] args) {
+        System.out.println("请以数组形式输入两个链表：");
         Scanner sc = new Scanner(System.in);
-        List<ListNode> l = new ArrayList<>(2); //链表存储容器
-        for (int i = 1; i < 3; i++) {
-            ListNode l0 = new ListNode();
-            ListNode curr = l0;
-            System.out.print("l" + i + "=");
-            String input = sc.nextLine(); //输入string
-            String str = input.substring(1, input.length() - 1); //去掉首尾[]
-            String[] arr = str.split(","); //按,分隔
-            for (int j = 0; j < arr.length; j++) {
-                curr.next = new ListNode(Integer.parseInt(arr[j])); //节点赋值
-                curr = curr.next;
-            }
-            l.add(l0.next);
+        System.out.print("l1=");
+        String s1 = sc.nextLine();
+        String str1 = s1.substring(1, s1.length() - 1); //去掉首尾[]
+        String[] arr1 = str1.split(","); //按,分隔
+        ListNode l1 = new ListNode();
+        ListNode c1 = l1;
+        for (int i = 0; i < arr1.length; i++) {
+            c1.next = new ListNode(Integer.parseInt(arr1[i]));
+            c1 = c1.next;
         }
-        ListNode result = solution(l.get(0), l.get(1)); //调用算法，返回链表
-        List<Integer> r = new ArrayList<>(); //初始化List
+
+        System.out.print("l2=");
+        String s2 = sc.nextLine();
+        String str2 = s2.substring(1, s2.length() - 1); //去掉首尾[]
+        String[] arr2 = str2.split(","); //按,分隔
+        ListNode l2 = new ListNode();
+        ListNode c2 = l2;
+        for (int i = 0; i < arr2.length; i++) {
+            c2.next = new ListNode(Integer.parseInt(arr2[i]));
+            c2 = c2.next;
+        }
+
+        ListNode result = solution(l1.next, l2.next); // 调用算法，返回链表
+        List<Integer> r = new ArrayList<>(); // 初始化List
         while (result != null) {
-            r.add(result.val); //赋值
+            r.add(result.val); // 赋值
             result = result.next;
         }
         System.out.println(Arrays.toString(r.toArray())); //转string打印输出
