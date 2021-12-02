@@ -1,6 +1,7 @@
-package com.company.brush.addlists;
+package com.company.brush.listnodes;
 
 public class ListNode {
+
     int val;
     ListNode next;
 
