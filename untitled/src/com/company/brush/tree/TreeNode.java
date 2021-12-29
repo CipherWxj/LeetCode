@@ -1,5 +1,6 @@
 package com.company.brush.tree;
 
+// 树节点类
 public class TreeNode {
     int val;
     TreeNode left;
