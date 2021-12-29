@@ -21,7 +21,7 @@ public class IsSameTree {
     }
 
     public static void main(String[] args) {
-        System.out.println("请输入两个个数组形式的【层序遍历】二叉树：");
+        System.out.println("请输入两个数组形式的【层序遍历】二叉树：");
         System.out.print("p= ");
         TreeNode p = input();
         System.out.print("q= ");
