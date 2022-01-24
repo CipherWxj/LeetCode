@@ -11,7 +11,7 @@ package com.company.brush;
 
 import java.util.Scanner;
 
-public class longestPalindrome {
+public class LongestPalindrome {
 
     //暴力求解，（会报错，超出时间限制！！）
     public static String solution1(String s) {

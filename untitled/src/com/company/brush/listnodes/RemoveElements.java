@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class removeElements {
+public class RemoveElements {
 
     public static ListNode solution(ListNode head, int val) {
         ListNode first = new ListNode(); // 初始化一个头节点，方便链表操作

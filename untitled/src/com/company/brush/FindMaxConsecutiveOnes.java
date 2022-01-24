@@ -10,10 +10,9 @@
  */
 package com.company.brush;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class findMaxConsecutiveOnes {
+public class FindMaxConsecutiveOnes {
     public static int solution(int[] nums) {
         int count = 0; // 计数器
         int max = 0; // 最大连续1的个数

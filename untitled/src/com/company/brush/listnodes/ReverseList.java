@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class reverseList {
+public class ReverseList {
 
     // 递归
     public static ListNode solution1(ListNode head) {

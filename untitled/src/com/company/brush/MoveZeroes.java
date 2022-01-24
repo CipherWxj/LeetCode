@@ -13,7 +13,7 @@ package com.company.brush;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MoveZeroes {
+public class moveZeroes {
     public static int[] solution(int[] nums) {
         int i = 0, j = 0; // 初始化双指针
         while (i < nums.length) { // 遍历
