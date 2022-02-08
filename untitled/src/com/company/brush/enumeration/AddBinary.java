@@ -8,7 +8,7 @@
  * <p>输出描述:
  * "100"
  */
-package com.company.brush.Enumeration;
+package com.company.brush.enumeration;
 
 import java.util.Scanner;
 
