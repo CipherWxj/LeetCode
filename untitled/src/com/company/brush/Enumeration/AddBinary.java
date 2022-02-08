@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 67. 二进制求和
  * 给你两个二进制字符串，返回它们的和（用二进制表示）。
  * 输入为 非空 字符串且只包含数字 1 和 0。
  * <p>输入描述:
@@ -7,7 +8,7 @@
  * <p>输出描述:
  * "100"
  */
-package com.company.brush;
+package com.company.brush.Enumeration;
 
 import java.util.Scanner;
 
