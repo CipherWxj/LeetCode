@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 485. 最大连续 1 的个数
  * 给定一个二进制数组， 计算其中最大连续 1 的个数。
  * 输入的数组只包含 0 和 1 。
  * 输入数组的长度是正整数，且不超过 10,000。
@@ -8,7 +9,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush;
+package com.company.brush.array;
 
 import java.util.Scanner;
 
