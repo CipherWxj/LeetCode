@@ -10,7 +10,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.Stack;
+package com.company.brush.stack;
 
 import java.util.Scanner;
 import java.util.Stack;
