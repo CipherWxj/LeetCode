@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 14. 最长公共前缀
  * 给你一个字符串数组 strs，查找字符串数组中的最长公共前缀。
  * 如果不存在公共前缀，返回空字符串 ""。
  * 最长公共前缀：字符串数组中元素前几个字母是一样的。
@@ -8,7 +9,7 @@
  * <p>输出描述:
  * "fl"
  */
-package com.company.brush;
+package com.company.brush.enumeration;
 
 import java.util.Scanner;
 
