@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 5. 最长回文子串
  * 给你一个字符串 s，找到 s 中最长的回文子串。
  * 回文串：字符串无论从左读还是从右读,所读的顺序是一样的;简而言之,回文串是 左右对称 的.
  * <p>输入描述:
@@ -7,7 +8,7 @@
  * <p>输出描述:
  * bab or aba
  */
-package com.company.brush;
+package com.company.brush.dynamicprogramming;
 
 import java.util.Scanner;
 
