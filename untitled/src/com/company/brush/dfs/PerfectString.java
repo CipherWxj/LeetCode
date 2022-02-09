@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * # 完美串
  * 给出一个长度为 n 的数列，请计算这个数列中长度不超过 k 的严格递增子序列的个数；
  * 因为答案可能很大，所以请输出答案对 2^61-1 的模数；
  * 子序列是指从最初序列通过去除某些元素但不破坏余下元素的相对位置(在前或在后)而形成的新序列；
@@ -12,7 +13,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush;
+package com.company.brush.dfs;
 
 import java.util.ArrayList;
 import java.util.List;
