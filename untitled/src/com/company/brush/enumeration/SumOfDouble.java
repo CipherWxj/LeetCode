@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 1. 两数之和
  * 给定一个整数数组 nums 和一个整数目标值 target，
  * 请你在该数组中找出 和 为目标值target的那两个整数，并返回它们的 数组下标；
  * 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现；
@@ -11,7 +12,7 @@
  * [0,1]
  */
 
-package com.company.brush;
+package com.company.brush.enumeration;
 
 import java.util.Arrays;
 import java.util.Scanner;
