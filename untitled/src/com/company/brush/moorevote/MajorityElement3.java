@@ -1,12 +1,13 @@
 /**
  * @author: Wxj
+ *229. 求众数 II
  * 给定一个大小为 n 的整数数组，找出其中所有出现超过 n/3 次的元素。
  * <p>输入描述:
  * [2,2,1,1,1,2,2,3,4]
  * <p>输出描述:
  * [2]
  */
-package com.company.brush;
+package com.company.brush.moorevote;
 
 import java.util.*;
 
