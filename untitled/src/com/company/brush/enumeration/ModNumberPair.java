@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * # 取模数对
  * 在自然数序列 1~n 中任意选择两个不同的数 x 和 y ，求满足 x%y=k（%：取模）的（x，y）的对数；
  * （1≤t≤100，1<=n，k≤10^6)
  * <p>输入描述：
@@ -10,7 +11,7 @@
  * 4
  * 5
  */
-package com.company.brush;
+package com.company.brush.enumeration;
 
 import java.util.Scanner;
 
