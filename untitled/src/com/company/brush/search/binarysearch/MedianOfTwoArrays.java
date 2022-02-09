@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 4. 寻找两个正序数组的中位数
  * 给定两个大小分别为 m 和 n 的正序（从小到大）数组 num1 和 num2。请你找出并返回这两个正序数组的 中位数。
  * <p>输入描述:
  * nums1 = [1,3]
@@ -7,14 +8,12 @@
  * <p>输出描述:
  * 2.0
  */
-package com.company.brush;
+package com.company.brush.search.binarysearch;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class MedianOfTwoArrays {
-
-
     // 硬着头皮遍历
     public static double solution1(int[] num1, int[] num2) {
         int n1 = num1.length;
