@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 13. 罗马数字转整数
  * 罗马数字包含以下七种字符:I，V，X，L，C，D，M。
  * 字符          数值
  * I             1
@@ -26,7 +27,7 @@
  * <p>输出描述:
  * 1994
  */
-package com.company.brush;
+package com.company.brush.enumeration;
 
 import java.util.Scanner;
 
