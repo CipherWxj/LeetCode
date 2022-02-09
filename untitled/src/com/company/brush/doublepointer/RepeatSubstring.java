@@ -1,5 +1,6 @@
 /**
  * @author: Wxj
+ * 3. 无重复字符的最长子串
  * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
  * <p>输入描述：
  * s = abcabcbb
@@ -7,7 +8,7 @@
  * 3
  * （解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3）
  */
-package com.company.brush;
+package com.company.brush.doublepointer;
 
 import java.util.HashMap;
 import java.util.Map;
