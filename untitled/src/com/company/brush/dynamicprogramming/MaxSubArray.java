@@ -8,19 +8,20 @@
  * <p>输出描述:
  * 6
  */
-package com.company.brush.array;
+package com.company.brush.dynamicprogramming;
 
 import java.util.Scanner;
 
 public class MaxSubArray {
+
+    // 动态规划
     public static int solution(int[] nums) {
+        int[] dp = new int[nums.length]; // dp[] 记录以i为结尾的子数组的和
         int max = nums[0]; // 最大值存储
-        int temp = nums[0]; // 连续子串的和
+        dp[0] = nums[0]; // 初始状态
         for (int i = 1; i < nums.length; i++) {
-            temp = Math.max(nums[i], temp + nums[i]); // 只需要比较 前面子串与该位置的和 与该位置的值 的大小
-            if (temp > max) {
-                max = temp; // 与存储的最大值进行比较
-            }
+            dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]); // 只需要比较 前面子串与该位置的和 与 该位置的值 的大小
+            max = Math.max(max, dp[i]); // 与存储的最大值进行比较
         }
         return max;
     }
