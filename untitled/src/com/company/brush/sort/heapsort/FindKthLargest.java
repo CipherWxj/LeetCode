@@ -26,7 +26,7 @@ public class FindKthLargest {
             int temp = nums[j];
             nums[j] = nums[0];
             nums[0] = temp;
-            adjustMaxHeap(nums, 0, j);
+            adjustMaxHeap(nums, 0, j+1);
         }
         // 返回数组中倒数第 k 个元素
         return nums[nums.length - k];
@@ -52,6 +52,21 @@ public class FindKthLargest {
         }
     }
 
+    public static void minHeap(int[] nums,int i, int length){
+        int left=2*i+1,right=2*i+2,largest=i;
+        if(left<length&&nums[left]<nums[largest]){
+            largest=left;
+        }
+        if(right<length&&nums[right]<nums[largest]){
+            largest=right;
+        }
+        if (largest!=i){
+            int temp=nums[i];
+            nums[i]=nums[largest];
+            nums[largest]=temp;
+            minHeap(nums,largest,length);
+        }
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入一个数组：");
