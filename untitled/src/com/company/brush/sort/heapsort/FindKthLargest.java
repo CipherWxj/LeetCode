@@ -26,7 +26,7 @@ public class FindKthLargest {
             int temp = nums[j];
             nums[j] = nums[0];
             nums[0] = temp;
-            adjustMaxHeap(nums, 0, j+1);
+            adjustMaxHeap(nums, 0, j); // 注意length
         }
         // 返回数组中倒数第 k 个元素
         return nums[nums.length - k];
