@@ -18,28 +18,27 @@ public class MergeTwoLinkedLists {
 
     public static ListNode solution(ListNode l1, ListNode l2) {
 
-        ListNode head = new ListNode(); // 初始化结果链表的头结点（不存数据）
-        ListNode cur = head; // 结果链表的当前节点指针
+        ListNode head = new ListNode(); // 初始化结果链表的头结点（不存数据存任意数据都不影响）
+        ListNode cur = head; // 结果链表的当前节点指针，用于生成新链表
 
         while (l1 != null && l2 != null) { // 两者均不为空时遍历
             if (l1.val <= l2.val) { // l1 节点的值 <= l2 节点的值
-                // 新建节点，并将较小值赋给它
-                // （如果直接赋值给cur那么下面cur指针右移将报空指针异常错误）
-                cur.next = new ListNode(l1.val);
+                cur.next = l1; // 链接l1
                 l1 = l1.next; // l1 节点右移
             } else { // l1 节点的值 > l2 节点的值
-                cur.next = new ListNode(l2.val);
+                cur.next = l2; // 链接l1
                 l2 = l2.next; // l2 节点右移
             }
-            cur = cur.next; // 结果链表节点右移
+            cur = cur.next; // 结果链表节点右移，遍历
         }
         // 比较完之后若还有非空链表则直接链接到结果链表
-        if (l1 != null) {
-            cur.next = l1;
-        }
-        if (l2 != null) {
-            cur.next = l2;
-        }
+//        if (l1 != null) {
+//            cur.next = l1;
+//        }
+//        if (l2 != null) {
+//            cur.next = l2;
+//        }
+        cur.next = l1 == null ? l2 : l1;
         return head.next; // 由于头节点未赋值，返回除头节点以外的结果链表
     }
 
