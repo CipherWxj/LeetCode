@@ -20,7 +20,7 @@ public class MaxProfit2 {
     public static int solution(int[] prices) {
         // 动态数组
         // dp[i][]表示到第i天（包括第i天）获得的利润
-        // dp[i][0]表示第i天结束手上没有股票； dp[i][0]表示第i天结束手上有股票
+        // dp[i][0]表示第i天结束手上没有股票； dp[i][1]表示第i天结束手上有股票
         int[][] dp = new int[prices.length][2];
 
         // 初始状态
