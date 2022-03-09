@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class MergeOrderedArrays {
 
-    public static int[] solution(int[] nums1, int m, int[] nums2, int n) {
+    public static int[] solution1(int[] nums1, int m, int[] nums2, int n) {
 
         int i = 0, j = 0; // 索引指针
 
@@ -36,6 +36,27 @@ public class MergeOrderedArrays {
                 nums1[i] = nums2[j]; // 插入
                 j++; // nums2 指针后移
             }
+        }
+        return nums1;
+    }
+
+    // 从后往前比较
+    public static int[] solution2(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1, j = n - 1, pos = m + n - 1; // i遍历nums1；j遍历nums2；pos标记填入位置
+        // nums2遍历完结束
+        while (j >= 0) {
+            // nums1遍历完，说明nums2中剩余元素都更小，直接copy到nums1的头部
+            if (i == -1) {
+                nums1[pos] = nums2[j];
+                j--;
+            } else if (nums2[j] > nums1[i]) { // nums2元素更大，填入nums1
+                nums1[pos] = nums2[j];
+                j--;
+            } else { // nums1元素更大，将该元素放到它该待的位置，继续向前比较
+                nums1[pos] = nums1[i];
+                i--;
+            }
+            pos--; // 每进行一次填入，标记的位置左移
         }
         return nums1;
     }
@@ -62,6 +83,6 @@ public class MergeOrderedArrays {
             nums2[i] = Integer.parseInt(n2[i]);
         }
 
-        System.out.println(Arrays.toString(solution(nums1, nums1.length - nums2.length, nums2, nums2.length)));
+        System.out.println(Arrays.toString(solution2(nums1, nums1.length - nums2.length, nums2, nums2.length)));
     }
 }
