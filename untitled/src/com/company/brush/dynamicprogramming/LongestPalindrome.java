@@ -41,16 +41,12 @@ public class LongestPalindrome {
         return true;
     }
 
-    //官方解法，动态规划
+    //动态规划
     public static String solution2(String s) {
-        int len = s.length();
+        int len = s.length(); // 字符串长度
+        if (len < 2) return s; // 长度<2 的串一定是回文串
 
-        //长度小于2的字符串返回其本身
-        if (len < 2) {
-            return s;
-        }
-
-        // dp[i][j] 表示 s[i..j] 是否是回文串
+        // 二维动态数组，用于标记以 i位置 开头、j位置 结束的子串是否是回文串
         boolean[][] dp = new boolean[len][len];
 
         // 初始化：所有长度为 1 的子串都是回文串
@@ -58,42 +54,35 @@ public class LongestPalindrome {
             dp[i][i] = true;
         }
 
-        char[] charArray = s.toCharArray();
+        int maxL = 1, start = 0; // 最大长度、回文串开始位置
 
-        // 递推开始
-
-        int maxLen = 1;
-        int begin = 0;
-        // 先枚举子串长度
+        // 以子串长度为变量遍历
         for (int L = 2; L <= len; L++) {
-            // 枚举左边界，左边界的上限设置可以宽松一些
+            // 起始位置遍历
             for (int i = 0; i < len; i++) {
-                // 由 L 和 i 可以确定右边界，即 j - i + 1 = L
-                int j = i + L - 1;
-                // 如果右边界越界，就可以退出当前循环
-                if (j >= len) {
-                    break;
-                }
-
-                if (charArray[i] != charArray[j]) {
-                    dp[i][j] = false; //左边界和右边界不相等，返回false
-                } else {
-                    if (j - i < 3) {
-                        dp[i][j] = true; //L=2且相等，返回true
-                    } else {
-                        dp[i][j] = dp[i + 1][j - 1]; //L>2且左右边界相等，左边界右移，右边界左移
+                int j = i + L - 1; // 结束位置
+                if (j >= len) break; // 右侧超出字符串范围，结束
+                // 开头、末尾字符相同
+                if (s.charAt(i) == s.charAt(j)) {
+                    if (j - i < 3) { // 只含2、3个字符
+                        dp[i][j] = true;
+                    } else { // 字符数>3,中间向两侧递推
+                        dp[i][j] = dp[i + 1][j - 1];
                     }
+                } else {
+                    dp[i][j] = false;
                 }
 
-                // 只要 dp[i][i+L-1] == true 成立，就表示子串 s[i..i+L-1] 是回文，此时记录回文长度和起始位置
-                if (dp[i][j] && j - i + 1 > maxLen) {
-                    maxLen = j - i + 1;
-                    begin = i;
+                // 计算最大回文子串长度
+                if (dp[i][j]) {
+                    maxL = Math.max(j - i + 1, maxL);
+                    start = i;
                 }
             }
         }
-        return s.substring(begin, begin + maxLen);
+        return s.substring(start, start + maxL);
     }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
