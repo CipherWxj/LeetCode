@@ -83,6 +83,32 @@ public class LongestPalindrome {
         return s.substring(start, start + maxL);
     }
 
+    // 中心扩展法
+    public static String solution3(String s) {
+        int len = s.length(); // 字符串长度
+        if (len < 2) return s; // 长度<2 的串一定是回文串
+        int maxL = 0, start = 0; // 最大长度、回文串开始位置
+        // 以索引为i的字符为中心向两侧扩展
+        for (int i = 1; i < len; i++) {
+            int l1 = expand(s, i, i); // 假设子串长度是奇数
+            int l2 = expand(s, i - 1, i); // 假设子串长度是偶数
+            int l = Math.max(l1, l2);
+            if (l > maxL) {
+                start = i - l / 2;
+                maxL = l;
+            }
+        }
+        return s.substring(start, start + maxL);
+    }
+
+    // 比较
+    public static int expand(String s, int left, int right) {
+        while (left > -1 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return (--right) - (++left) + 1; // 这个返回值一定要注意！！！
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
