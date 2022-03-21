@@ -20,27 +20,29 @@ import java.util.Scanner;
 
 public class ReverseKGroup {
     public static ListNode solution(ListNode head, int k) {
-        ListNode dummy = new ListNode();
+        ListNode dummy = new ListNode(); // 虚拟头节点，便于操作
         dummy.next = head;
 
-        ListNode prev = dummy;
+        ListNode prev = dummy; // 分段头节点的前一节点
         while (head != null) {
-            ListNode tail = head;
+            ListNode tail = head; // 分段尾节点
+            // 分段操作
             for (int i = 1; i < k; i++) {
                 if (tail.next == null) return dummy.next;
                 tail = tail.next;
             }
 
-            ListNode next = tail.next;
-            tail.next = null;
-            prev.next = reverse(head);
-            prev = head;
-            head.next = next;
-            head = next;
+            ListNode next = tail.next; // 分段尾节点的下一节点
+            tail.next = null; // 断开，只取要反转的一段
+            prev.next = reverse(head); // 反转，并连接到前面已经完成反转的链表
+            head.next = next; // 连接到后面还未完成反转的链表，因为已经反转了，head来到了该段的最后
+            prev = head; // 更新prev
+            head = next; // 更新head，下一段开始
         }
         return dummy.next;
     }
 
+    // 反转操作
     public static ListNode reverse(ListNode head) {
         ListNode last = null;
         ListNode cur = head;
