@@ -10,7 +10,7 @@
  * <p>输出描述:
  * [[2,2,3],[7]]
  */
-package com.company.brush.dfs;
+package com.company.brush.backtraking;
 
 import java.util.ArrayList;
 import java.util.List;
