@@ -14,7 +14,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.dfs;
+package com.company.brush.backtraking;
 
 import java.util.Scanner;
 
