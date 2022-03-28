@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [[1,1,2],[1,2,1],[2,1,1]]
  */
-package com.company.brush.dfs;
+package com.company.brush.backtraking;
 
 import java.util.ArrayList;
 import java.util.Arrays;
