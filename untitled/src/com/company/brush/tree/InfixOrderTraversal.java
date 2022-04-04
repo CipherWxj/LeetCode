@@ -9,13 +9,12 @@
  */
 package com.company.brush.tree;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class InfixOrderTraversal {
     static List<Integer> res = new ArrayList<>(); // 为了方便添加元素，将res放在方法外进行初始化
 
+    // 递归
     public static List<Integer> solution(TreeNode root) {
         if (root == null) return res;
         // 遍历左子树
@@ -30,22 +29,42 @@ public class InfixOrderTraversal {
         return res;
     }
 
+    // 迭代
+    public static List<Integer> solution1(TreeNode root) {
+        // 初始化一个栈（递归隐式维护了函数栈）
+        // 用队列维护栈效率更高
+        Deque<TreeNode> stack = new LinkedList<>();
+        while (root != null || !stack.isEmpty()) {
+            // 一直遍历到左子树最底层
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            // 依次出栈，返回
+            root = stack.pop();
+            res.add(root.val);
+            // 再去遍历右子树
+            root = root.right;
+        }
+        return res;
+    }
+
 
     public static void main(String[] args) {
         System.out.println("请输入一个数组形式的【层序遍历】二叉树：");
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("root= ");
-        String s=sc.nextLine();
-        s=s.substring(1,s.length()-1);
-        String[] str=s.split(",");
-        Integer[] arr=new Integer[str.length];
+        String s = sc.nextLine();
+        s = s.substring(1, s.length() - 1);
+        String[] str = s.split(",");
+        Integer[] arr = new Integer[str.length];
         for (int i = 0; i < arr.length; i++) {
-            if(str[i].equals("")){
-                arr[i]= null;
-            }else arr[i]=Integer.parseInt(str[i]);
+            if (str[i].equals("")) {
+                arr[i] = null;
+            } else arr[i] = Integer.parseInt(str[i]);
         }
-        CreatBinaryTree Tree=new CreatBinaryTree(arr);
-        TreeNode root=Tree.layerCreat(0);
+        CreatBinaryTree Tree = new CreatBinaryTree(arr);
+        TreeNode root = Tree.layerCreat(0);
         System.out.println(solution(root));
     }
 }
