@@ -17,22 +17,28 @@ import java.util.Scanner;
 
 public class DeleteDuplicates {
 
+    // 迭代
     public static ListNode solution(ListNode head) {
-        // head为空时，直接返回
-        if (head != null) {
-            ListNode temp = head; // 指向上一个不重复的节点
-            ListNode cur = head.next; // 当前节点，用于遍历
-            while (cur != null) {
-                if (cur.val == temp.val) {
-                    // 相等，先将cur右移，然后让temp.next指向cur，达到删除的目的
-                    cur = cur.next;
-                    temp.next = cur;
-                } else {
-                    // 不相等，先将temp右移，再将cur右移
-                    temp = cur;
-                    cur = cur.next;
-                }
+        ListNode dummy = new ListNode();
+        dummy.next = head;
+        ListNode cur = dummy;
+        // 终止条件 cur.next 到最后一个节点
+        while (cur.next != null && cur.next.next != null) {
+            if (cur.next.val == cur.next.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
             }
+        }
+        return dummy.next;
+    }
+
+    // 递归
+    public static ListNode solution2(ListNode head) {
+        if (head == null || head.next == null) return head;
+        head.next = solution2(head.next);
+        if (head.val == head.next.val) {
+            head = head.next;
         }
         return head;
     }
@@ -52,7 +58,7 @@ public class DeleteDuplicates {
             l1 = l1.next;
         }
 
-        ListNode result = solution(head); // 调用算法，返回链表
+        ListNode result = solution2(head); // 调用算法，返回链表
         List<Integer> r = new ArrayList<>(); // 初始化List
         while (result != null) {
             r.add(result.val); // 赋值
