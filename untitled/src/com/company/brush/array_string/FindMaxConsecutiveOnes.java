@@ -9,7 +9,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.array;
+package com.company.brush.array_string;
 
 import java.util.Scanner;
 
