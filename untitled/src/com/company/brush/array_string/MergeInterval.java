@@ -8,7 +8,7 @@
  * <p>输出描述:
  * [[1,6],[8,10],[15,18]]
  */
-package com.company.brush.array;
+package com.company.brush.array_string;
 
 import java.util.ArrayList;
 import java.util.Arrays;
