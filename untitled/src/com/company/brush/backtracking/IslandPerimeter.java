@@ -16,7 +16,7 @@
  * <p>输出描述:
  * 16
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 import java.util.Scanner;
 

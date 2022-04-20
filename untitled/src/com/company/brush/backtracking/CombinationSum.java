@@ -10,7 +10,7 @@
  * <p>输出描述:
  * [[2,2,3],[7]]
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;

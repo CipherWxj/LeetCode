@@ -7,7 +7,7 @@
  * <p>输出描述:
  * ["((()))","(()())","(())()","()(())","()()()"]
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 
 import java.util.ArrayList;

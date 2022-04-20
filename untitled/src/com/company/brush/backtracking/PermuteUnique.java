@@ -1,39 +1,38 @@
 /**
  * @author: Wxj
- * 46. 全排列
- * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。
- * 你可以 按任意顺序 返回答案。
+ * 47. 全排列 II
+ * 给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
  * <p>输入描述:
- * nums = [1,2,3]
+ * nums = [1,1,2]
  * <p>输出描述:
- * [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+ * [[1,1,2],[1,2,1],[2,1,1]]
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Permute {
+public class PermuteUnique {
     public static List<List<Integer>> solution(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        boolean[] visited = new boolean[nums.length]; // 记录是否已经遍历，初始全为 false
+        boolean[] visited = new boolean[nums.length];
+        Arrays.sort(nums);
         backtrak(nums, visited, res, new ArrayList<Integer>());
         return res;
     }
 
     public static void backtrak(int[] nums, boolean[] visited, List<List<Integer>> res, List<Integer> ans) {
-        // 返回
         if (ans.size() == nums.length) {
             res.add(new ArrayList<>(ans));
         }
-        // 遍历搜索
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i]) continue; // 已经遍历该元素
-            visited[i] = true; // 标记
-            ans.add(nums[i]); // 添加
-            backtrak(nums, visited, res, ans); // dfs
-            // 回溯
+            if (visited[i]) continue;
+            if (i > 0 && nums[i] == nums[i - 1] && visited[i - 1]) continue; // 避免重复
+            visited[i] = true;
+            ans.add(nums[i]);
+            backtrak(nums, visited, res, ans);
             visited[i] = false;
             ans.remove(ans.size() - 1);
         }

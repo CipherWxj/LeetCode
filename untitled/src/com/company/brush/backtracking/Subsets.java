@@ -8,10 +8,9 @@
  * <p>输出描述:
  * [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 

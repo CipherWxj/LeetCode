@@ -13,7 +13,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.backtraking;
+package com.company.brush.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
