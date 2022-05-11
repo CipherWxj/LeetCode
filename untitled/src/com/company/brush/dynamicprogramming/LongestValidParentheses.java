@@ -9,7 +9,11 @@
  */
 package com.company.brush.dynamicprogramming;
 
-// 方法一：动态规划 com/company/brush/dynamicprogramming/LongestValidParentheses.java
+/*
+ * 方法1：动态规划 com/company/brush/dynamicprogramming/LongestValidParentheses.java
+ * 方法2：栈 com/company/brush/stack/LongestValidParentheses.java
+ * 方法3：双指针遍历（贪心算法）com/company/brush/doublepointer/LongestValidParentheses.java
+ */
 
 public class LongestValidParentheses {
     // 动态规划
