@@ -21,6 +21,7 @@ public class SortArray {
     // 快速排序
     // 每次随机选取一个切分元素，将其放到它该待的位置上
     // 接着向两侧递归，继续执行快排
+    // 时间复杂度 O(nlog(n))，空间复杂度 O(1)
     public static int[] quickSort(int[] nums, int l, int r) {
         // l >= r，说明排序完成，不需要再递归了！！！
         // 没有这个条件后面会报错！
