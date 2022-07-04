@@ -13,13 +13,13 @@ public class InsertSort{
     // 执行 n-1 次，第一次假设第一个元素已经排序，第二次假设前两个元素已经排序……
     for(int i = 1; i < nums.length; i++){
       insValue = nums[i]; // 待插入的值
-      insIndex = i - 1; // 待插入的位置
+      insIndex = i; // 待插入的位置
       // 保证索引存在！！
-      while(insIndex >= 0 && nums[insIndex] > insValue){
-        nums[insIndex + 1] = nums[insIndex]; // 后移
+      while(insIndex - 1 >= 0 && nums[insIndex - 1] > insValue){
+        nums[insIndex] = nums[insIndex - 1]; // 后移
         insIndex--; // 向前搜索
       }
-      nums[insIndex + 1] = insValue; // 插入
+      nums[insIndex] = insValue; // 插入
     }
   }
 }
