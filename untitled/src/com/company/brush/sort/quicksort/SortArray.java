@@ -43,7 +43,7 @@ public class SortArray {
         int i = l - 1;
         // 从最左侧到右侧前一位（最后一位切分元素）
         for (int j = l; j < r; ++j) {
-            // 比切分元素小的都放到切分元素的左侧
+            // 比切分元素小的都放到切分位置的左侧
             if (nums[j] <= pivot) {
                 i++;
                 swap(nums, i, j);
