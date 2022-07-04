@@ -8,8 +8,8 @@ public class SortArray {
   // 归并排序
   // 将长度为 n 的序列分成长度为 n/2 的子序列，
   // 继续递归拆分成长度为 n/4 的子序列……直到子序列长度为 1或2
-  // 开辟一个新数组temp，将序列从中间分割，遍历比较前后两段中元素大小
-  // 按从小到大填充到temp，再依次向上合并
+  // 开辟一个新数组 temp，将序列从中间分割，遍历比较前后两段中元素大小（两段都已排序）
+  // 按从小到大填充到 temp，再依次向上合并
   // 时间复杂度 O(nlog(n))，空间复杂度 O(n)
   public void mergeSort(int[] nums, int left, int right, int[] temp){
     if(left < right){
