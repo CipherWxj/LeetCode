@@ -12,7 +12,7 @@ package com.company.brush.dynamicprogramming;
 
 import java.util.Scanner;
 
-public class MaxSubArray {
+public class MaxSubArraySum {
 
     // 动态规划
     public static int solution(int[] nums) {
