@@ -1,4 +1,6 @@
-public class InsertSort{
+package com.company.brush.sort.selectsort;
+
+public class SortArray{
   public int[] solution(int[] nums){
     return selectSort(nums);
   }
@@ -20,6 +22,7 @@ public class InsertSort{
       // 放到开头
       swap(nums, i, minIndex);
     }
+    return nums;
   }
   
   // 交换
