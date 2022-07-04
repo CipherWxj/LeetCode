@@ -18,7 +18,7 @@ public class ShellSort{
           nums[insIndex] = nums[insIndex - gap];
           insIndex -= gap;
         }
-        nums[insIndex + gap] = insValue;
+        nums[insIndex] = insValue;
       }
     }
   }
