@@ -10,7 +10,7 @@
  * <p>输出描述:
  * aaabcbc
  */
-package com.company.brush.array_string;
+package com.company.brush.stack;
 
 import java.util.Deque;
 import java.util.LinkedList;
