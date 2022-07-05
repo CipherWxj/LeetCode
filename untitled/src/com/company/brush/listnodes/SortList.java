@@ -100,10 +100,11 @@ public class SortList {
             if (cur.val >= lastSorted.val) {
                 lastSorted = cur;
             } else {
-                // 数组插入排序我们一直是从前往后比较
+                // 数组插入排序我们一直是从后往前比较
                 // 由于单链表没有前驱节点，只能从前往后遍历
                 // 为了方便节点的插入，我们比较的一直是cur 和 compare.next
                 ListNode compare = dummy;
+                // 能运行到这说明 cur 一定能被插入，while不会进入死循环，最差也是 lastSorted 前一位
                 while (cur.val >= compare.next.val) {
                     compare = compare.next;
                 }
