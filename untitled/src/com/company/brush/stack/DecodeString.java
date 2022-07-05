@@ -16,7 +16,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class DecodeString {
-    public static String solution(String s){
+    public static String solution(String s) {
         // 维护两个栈，一个存字符，一个存数字
         Deque<String> strStack = new LinkedList<>();
         Deque<Integer> numStack = new LinkedList<>();
@@ -28,17 +28,16 @@ public class DecodeString {
             char c = s.charAt(i);
 
             // 数字，下一位还是数字的话就有多位数，计算
-            if(c>='0' && c<='9'){
+            if (c >= '0' && c <= '9') {
                 count = count * 10 + c - '0';
-            }else if(c == '['){ // 左括号
+            } else if (c == '[') { // 左括号
                 // 将数字入栈，并将计数器置 0
                 numStack.push(count);
                 count = 0;
                 // 将已经确定的结果字符入栈，将结果串置为 “”
                 strStack.push(res.toString());
                 res = new StringBuilder();
-            }
-            else if(c==']') { // 右括号
+            } else if (c == ']') { // 右括号
                 // 将暂存的 结果串 循环解码
                 StringBuilder temp = new StringBuilder();
                 int n = numStack.removeLast();
@@ -47,7 +46,7 @@ public class DecodeString {
                 }
                 // 与 前面已经确定的串 连接
                 res = new StringBuilder(strStack.removeLast() + temp);
-            }else { // 是字符（两个中括号之间的）放入结果串 暂存
+            } else { // 是字符（两个中括号之间的）放入结果串 暂存
                 res.append(c);
             }
         }
