@@ -50,13 +50,13 @@ public class SortArray {
         }
         // 最后有一侧会有剩余元素（该子序列中最大），也放入 temp
         // 左侧，无剩余 i == mid
-        while (i < mid) {
+        while (i <= mid) {
             temp[k] = nums[i];
             i++;
             k++;
         }
         // 右侧，无剩余 j == right
-        while (j < right) {
+        while (j <= right) {
             temp[k] = nums[i];
             j++;
             k++;
