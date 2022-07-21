@@ -36,8 +36,8 @@ public class IsCompleteTree {
                     queueIndex.offer(index * 2 + 1);
                     list.add(index * 2 + 1);
                 }
-                if(node.left != null) {
-                    queueNode.offer(node.left);
+                if(node.right != null) {
+                    queueNode.offer(node.right);
                     queueIndex.offer(index * 2 + 2);
                     list.add(index * 2 + 2);
                 }
