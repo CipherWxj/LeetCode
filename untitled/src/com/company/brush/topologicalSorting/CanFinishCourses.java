@@ -22,7 +22,7 @@ public class CanFinishCourses {
         int[] numEdge = new int[numCourses];
         // 遍历一次图，初始化所有节点的 入度数
         for (int[] prerequisite : prerequisites) {
-            numEdge[prerequisite[1]]++;
+            numEdge[prerequisite[0]]++;
         }
 
         // 初始化一个队列（栈也行），将所有 入度数为0 的节点入栈
@@ -41,11 +41,11 @@ public class CanFinishCourses {
             visited++;
             // 搜索 该节点指向的全部下一节点，并将它们的 入度数-1
             for (int[] prerequisite : prerequisites) {
-                if (prerequisite[0] == u) {
-                    numEdge[prerequisite[1]]--;
+                if (prerequisite[1] == u) {
+                    numEdge[prerequisite[0]]--;
                     // 入度数为 0，入栈
-                    if (numEdge[prerequisite[1]] == 0) {
-                        queue.offer(prerequisite[1]);
+                    if (numEdge[prerequisite[0]] == 0) {
+                        queue.offer(prerequisite[0]);
                     }
                 }
             }
