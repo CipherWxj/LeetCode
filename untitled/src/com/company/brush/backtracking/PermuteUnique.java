@@ -18,23 +18,29 @@ public class PermuteUnique {
     public static List<List<Integer>> solution(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         boolean[] visited = new boolean[nums.length];
+
+        // 这一步的排序很重要！！！为了去除重复排列
         Arrays.sort(nums);
-        backtrak(nums, visited, res, new ArrayList<Integer>());
+
+        backtrack(nums, visited, res, new ArrayList<>());
         return res;
     }
 
-    public static void backtrak(int[] nums, boolean[] visited, List<List<Integer>> res, List<Integer> ans) {
+    public static void backtrack(int[] nums, boolean[] visited, List<List<Integer>> res, List<Integer> ans) {
+        // 终止条件：排列长度等于数组长度
         if (ans.size() == nums.length) {
-            res.add(new ArrayList<>(ans));
+            res.add(new ArrayList<>(ans)); // 复制，直接添加报错
         }
+        // 遍历搜索，每一次遍历都从 数组的第一个元素 开始，这一轮已经遍历的元素跳过
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i]) continue;
-            if (i > 0 && nums[i] == nums[i - 1] && visited[i - 1]) continue; // 避免重复
-            visited[i] = true;
-            ans.add(nums[i]);
-            backtrak(nums, visited, res, ans);
-            visited[i] = false;
+            if (visited[i]) continue; // 跳过已经遍历的元素
+            if (i > 0 && nums[i] == nums[i - 1] && visited[i - 1]) continue; // 避免重复，每一层相同元素只排列一次,相同元素从后面排起
+            visited[i] = true; // 标记
+            ans.add(nums[i]); // 添加
+            backtrack(nums, visited, res, ans); // dfs
+            // 回溯
             ans.remove(ans.size() - 1);
+            visited[i] = false;
         }
     }
 
