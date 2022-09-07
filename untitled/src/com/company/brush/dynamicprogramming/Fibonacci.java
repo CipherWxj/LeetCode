@@ -13,21 +13,45 @@
  */
 package com.company.brush.dynamicprogramming;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fibonacci {
     public int fib(int n) {
         // 特殊情况单独摘出来
-        if(n == 0) return 0;
-        if(n == 1) return 1;
+        if (n == 0) return 0;
+        if (n == 1) return 1;
         // 为了减小空间复杂度，只取前两个值
         // fn：F(N)，f1：F(N - 1)，f2：F(N - 2)
         int f1 = 1, f2 = 0, fn = 0;
         // 递推
-        for(int i = 2; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             fn = (f1 + f2) % 1000000007;
             // 更新f1：F(N - 1) 和 f2：F(N - 2)
             f2 = f1;
             f1 = fn;
         }
         return fn;
+    }
+
+    // 递归
+    Map<Integer, Integer> map = new HashMap<>(); // <n, f(n)>
+
+    public int solution(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        map.put(0, 0);
+        map.put(1, 1);
+        return f(n);
+    }
+    // 记录，减少时间复杂度
+    public int f(int n) {
+        if (map.containsKey(n)) {
+            return map.get(n);
+        } else {
+            int m = f(n - 1) + f(n - 2);
+            map.put(n, m);
+            return m;
+        }
     }
 }
