@@ -28,7 +28,7 @@ public class FindMinInRotated {
             // 如果中间元素 小于 最右侧元素，说明 mid 右侧一直是递增的，最小值在 mid 左侧（含mid）
             if(nums[mid] < nums[right]){
                 right = mid;
-            }else { // 如果中间元素 大于 最右侧元素，说明 mid 左侧一直是递增的，最小值在 mid 左侧（不含mid）
+            }else { // 如果中间元素 大于 最右侧元素，说明 mid 左侧一直是递增的，最小值在 mid 右侧（不含mid）
                 left = mid + 1;
             }
         }
