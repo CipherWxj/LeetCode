@@ -12,56 +12,49 @@
  */
 package com.company.brush.search.binarysearch;
 
-import java.util.Arrays;
-
 public class SearchRange {
-    public static int[] solution(int[] nums, int target){
-        int leftIndex = binarySearchLeft(nums, target);
-        int rightIndex = binarySearchRight(nums, target);
-        if (leftIndex <= rightIndex && rightIndex < nums.length && nums[leftIndex] == target && nums[rightIndex] == target) {
-            return new int[]{leftIndex, rightIndex};
+    public int[] search(int[] nums, int target) {
+        int r = helperR(nums, target);
+        int l = helperL(nums, target);
+        if (l <= r && r < nums.length && nums[l] == target && nums[r] == target) {
+            return new int[]{l, r};
         }
         return new int[]{-1, -1};
     }
 
-    // 查找左边界
-    public static int binarySearchLeft(int[] nums, int target){
+    // 二分法查找 target 的右边界
+    public int helperR(int[] nums, int tar) {
         int left = 0, right = nums.length - 1;
-        // 左闭右开区间 [left, right） 上的二分查找
-        // 最后跳出循环的条件是 left = right
-        while(left < right){
-            int mid = (left + right) >> 1;
-            if(nums[mid] >= target){
-                right = mid; // （右开）
-            }else {
-                left = mid + 1; // （左闭）
+        // 闭区间[left,right]上的二分
+        while (left <= right) {
+            int m = (left + right) / 2;
+            if (nums[m] == tar) { // 相等，左边界继续右移，因为是找右边界
+                left = m + 1;
+            } else if (nums[m] < tar) {
+                left = m + 1;
+            } else {
+                right = m - 1;
             }
         }
-        return left; // 不管怎么找，左边界一定不会越界，最大只可能到 left = right = nums.length - 1
-    }
-
-    // 找右边界
-    public static int binarySearchRight(int[] nums, int target){
-        int left = 0, right = nums.length - 1;
-        // 左闭右开区间 [left, right） 上的二分查找
-        // 最后跳出循环的条件是 left = right
-        while(left < right){
-            int mid = (left + right) >> 1;
-            if(nums[mid] <= target){
-                left = mid + 1; // 左闭
-            }else {
-                right = mid; // （右开）
-            }
-        }
-        // 排除两种特殊情况：（1）最右侧元素为target；（2）单个元素的数组 left = 0（包含在第一种情况）
-        if((left == nums.length - 1 && nums[left] == target) || left == 0) return left;
-        // 因为是左闭右开区间，if(nums[mid] == target) left = mid + 1;
-        // 此时 mid = left - 1,才是 target 的最右侧位置
+        // 最后 left 停在 最后一个tar 的下一位
         return left - 1;
     }
 
-    public static void main(String[] args) {
-        int[] nums = new int[]{2,2};
-        System.out.println(Arrays.toString(solution(nums, 2)));
+    // 二分法查找 target 的左边界
+    public int helperL(int[] nums, int tar) {
+        int left = 0, right = nums.length - 1;
+        // 闭区间[left,right]上的二分
+        while (left <= right) {
+            int m = (left + right) / 2;
+            if (nums[m] == tar) { // 相等，右边界继续左移，因为是找左边界
+                right = m - 1;
+            } else if (nums[m] < tar) {
+                left = m + 1;
+            } else {
+                right = m - 1;
+            }
+        }
+        // 最后 right 停在 第一个tar 的前一位
+        return right + 1;
     }
 }
