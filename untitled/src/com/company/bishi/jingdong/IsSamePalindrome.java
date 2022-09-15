@@ -1,14 +1,4 @@
-/**
- * @author: Wxj
- * 判断字符串是否是 类回文串。
- * 类回文串：字符经过若干次移动，字符串能变成回文串。
- * 不区分字母大小写，其他字符同意当成 *。
- * <p>输入描述:
- * Aasd%￥s
- * <p>输出描述:
- * true
- */
-package com.company.bishi;
+package com.company.bishi.jingdong;
 
 import java.util.*;
 

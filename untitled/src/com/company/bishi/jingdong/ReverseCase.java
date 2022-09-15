@@ -1,16 +1,4 @@
-/**
- * @author: Wxj
- * 长度为 你的字符串，做 q 次操作，选择区间翻转字母大小写。
- * <p>输入描述:
- * 5 3
- * asdfg
- * 1 3
- * 3 5
- * 4 5
- * <p>输出描述:
- * ASdfg(asdfg--ASDfg--ASdFG--ASdfg)
- */
-package com.company.bishi;
+package com.company.bishi.jingdong;
 
 import java.util.Scanner;
 
