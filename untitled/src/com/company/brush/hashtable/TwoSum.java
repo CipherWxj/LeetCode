@@ -19,14 +19,19 @@ import java.util.Scanner;
 
 public class TwoSum {
     public static int[] solution(int[] nums, int target) {
-        Map<Integer, Integer> difference = new HashMap<>(); // 哈希表存储遍历过的元素 key：元素值  value：索引
+        // 初始化一个哈希表，key：target与已经遍历过元素的差值，value：已遍历过元素的数组下标
+        Map<Integer, Integer> diffMap = new HashMap<>();
+
         for (int i = 0; i < nums.length; i++) {
-            int diff = target - nums[i]; // 计算差值
-            if (difference.containsKey(diff)) { // 判断已经遍历过的元素是否存在该差值
-                return new int[]{difference.get(diff), i}; // 存在，则返回两个索引
+            // 计算target与当前元素的差值
+            int diff = target - nums[i];
+            if (diffMap.containsKey(diff)) { // 当前元素与已遍历元素的和是target，返回下标数组
+                return new int[]{diffMap.get(diff), i};
+            } else { // 当前元素与已遍历元素的和不是target，差值添加到diffMap，继续遍历
+                diffMap.put(diff, i);
             }
-            difference.put(nums[i], i); // 不存在，添加进哈希表，继续遍历
         }
+        // 默认返回
         return null;
     }
 
