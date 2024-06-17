@@ -14,9 +14,7 @@ package com.company.brush.tree.dfs;
 import com.company.brush.tree.TreeNode;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /*
  * 方法1：BFS com/company/brush/tree/bfs/RightSideView.java
