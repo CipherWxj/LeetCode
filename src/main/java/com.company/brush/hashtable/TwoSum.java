@@ -27,8 +27,8 @@ public class TwoSum {
             int diff = target - nums[i];
             if (diffMap.containsKey(diff)) { // 当前元素与已遍历元素的和是target，返回下标数组
                 return new int[]{diffMap.get(diff), i};
-            } else { // 当前元素与已遍历元素的和不是target，差值添加到diffMap，继续遍历
-                diffMap.put(diff, i);
+            } else { // 当前元素与已遍历元素的和不是target，当前值添加到diffMap，继续遍历
+                diffMap.put(nums[i], i);
             }
         }
         // 默认返回
