@@ -16,17 +16,20 @@ import java.util.Scanner;
 
 public class MoveZeroes {
     public static int[] solution(int[] nums) {
-        int i = 0, j = 0; // 初始化双指针
-        while (i < nums.length) { // 遍历
-            if (nums[i] != 0) {
-                nums[j] = nums[i]; // 不等，将该元素赋值给j指向的位置
-                j++; // j自增（j前面的元素都是非零元素）
+        // 初始化双指针，cur：遍历指针，maybeFirstZeroIndex标记左起第一个可能为0的位置
+        int cur = 0, maybeFirstZeroIndex = 0;
+
+        while (cur < nums.length) {
+            // 将不为0的数放到前面，不改变顺序
+            if (nums[cur] != 0) {
+                nums[maybeFirstZeroIndex] = nums[cur];
+                maybeFirstZeroIndex++;
             }
-            i++;
+            cur++;
         }
-        // 将后面所有元素置0
-        for (int k = j; k < nums.length; k++) {
-            nums[k] = 0;
+        // maybeFirstZeroIndex及其后面的数都是0
+        for (int i = maybeFirstZeroIndex; i < nums.length; i++) {
+            nums[i] = 0;
         }
         return nums;
     }
