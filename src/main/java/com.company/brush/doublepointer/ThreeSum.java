@@ -18,45 +18,33 @@ import java.util.Scanner;
 
 public class ThreeSum {
     public static List<List<Integer>> solution(int[] nums) {
-        int n = nums.length; // 数组长度
-        List<List<Integer>> res = new ArrayList<>(); // 结果存储
-        Arrays.sort(nums); // 排序
-        for (int first = 0; first < n; first++) {
-            // 如果第一个数都大于0了，后面就不用考虑了
-            if (nums[first] > 0) {
-                return res;
-            }
-            // 去除第一个数重复
-            if (first > 0 && nums[first] == nums[first - 1]) {
-                continue;
-            }
-            int second = first + 1; // 第二个数从前往后遍历
-            int third = n - 1; // 第三个数从后往前遍历
-            // 始终保证第二个数小于等于第三个数
-            while (second < third) {
-                int sum = nums[first] + nums[second] + nums[third];
-                if (sum == 0) {
+        List<List<Integer>> res = new ArrayList<>();
+        // 先排序！
+        Arrays.sort(nums);
+        // 三指针，i：第一个数，j：第二个数，k：第三个数
+        // 固定第一个数，从两边向中间遍历第二个数和第三个数
+        for (int i = 0; i < nums.length - 2; i++) {
+            // 从数组第二位开始，如果第一个数相等则跳过
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            // 从两边向中间遍历第二个数和第三个数
+            int j = i + 1, k = nums.length - 1;
+            while (j < k) {
+                if (nums[i] + nums[j] + nums[k] > 0) { // 三数之和大于0，说明较大的数大了，要减小
+                    k--;
+                } else if (nums[i] + nums[j] + nums[k] < 0) { // 三数之和小于0，说明较小的数小了，要增大（第一个数固定）
+                    j++;
+                } else { // 三数之和等于0
+                    // 去重，直到取到最后一个可取值时放到结果中
+                    while (j < k && nums[j] == nums[j + 1]) j++;
+                    while (j < k && nums[k] == nums[k - 1]) k--;
                     List<Integer> ans = new ArrayList<>();
-                    ans.add(nums[first]);
-                    ans.add(nums[second]);
-                    ans.add(nums[third]);
+                    ans.add(nums[i]);
+                    ans.add(nums[j]);
+                    ans.add(nums[k]);
                     res.add(ans);
-                    // 去除第二个数重复
-                    while (second < third && nums[second] == nums[second + 1]) {
-                        ++second;
-                    }
-                    // 去除第三个数重复
-                    while (second < third && nums[third] == nums[third - 1]) {
-                        --third;
-                    }
-                    ++second;
-                    --third;
-                } else if (sum < 0) {
-                    // 和小于0，增加第二个数，第三个数已经最大了（去不去重复对结果无影响）
-                    ++second;
-                } else {
-                    // 和大于0，减小第三个数，第二个数已经最小了
-                    --third;
+                    // 继续向中间遍历
+                    j++;
+                    k--;
                 }
             }
         }
@@ -73,7 +61,6 @@ public class ThreeSum {
         for (int i = 0; i < str.length; i++) {
             nums[i] = Integer.parseInt(str[i]);
         }
-
         System.out.println(solution(nums));
     }
 }
