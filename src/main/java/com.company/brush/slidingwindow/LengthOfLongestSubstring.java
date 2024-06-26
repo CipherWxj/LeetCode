@@ -15,25 +15,31 @@ import java.util.Scanner;
 
 public class LengthOfLongestSubstring {
     public static int solution(String s) {
-        // 使用hashMap记录出现过的字符
-        // key：字符    value：最近出现的位置
-        Map<Character, Integer> appeared = new HashMap<>();
+        // 初始化一个哈希表，key：出现过的字符，value：字符最后一次出现的位置索引
+        Map<Character, Integer> appearedMap = new HashMap<>();
+        // 初始化滑动窗口的左右指针，左指针标记起始位置，右指针遍历，滑动窗口标记的就是符合条件的子串
+        int left = 0, right = 0;
+        // 结果
+        int subMaxLength = 0;
 
-        int left = -1, right = 0; // 窗口左、右位置
-        int max = 0; // 最大子串长度
+        while (right < s.length()) {
+            // 当前字符
+            Character curChar = s.charAt(right);
 
-        for (right = 0; right < s.length(); right++) {
-            // 字符已经存在
-            if (appeared.containsKey(s.charAt(right))) {
-                // 判断左指针是否更改位置
-                left = Math.max(left, appeared.get(s.charAt(right)));
+            // 如果当前遍历位置的字符出现过，分情况更新左边界
+            // （1）再次出现的字符在窗口以外（左边界左边），那么左边界无需更新
+            // （1）再次出现的字符在窗口以内（左边界右边），左边界就要更新为curChar上一次出现的位置的右边一位
+            if (appearedMap.containsKey(curChar)) {
+                left = Math.max(left, appearedMap.get(curChar) + 1);
             }
-            // 更新Map
-            appeared.put(s.charAt(right), right);
-            // 更新最大字串长度（窗口长度）
-            max = Math.max(max, right - left);
+            // 当前遍历位置的字符记录到appearedMap里，之前出现过就更新索引位置，之前没出现过就放进去
+            appearedMap.put(curChar, right);
+            // 更新无重复字符的最长子串的长度
+            subMaxLength = Math.max(subMaxLength, right - left + 1);
+            // 遍历
+            right++;
         }
-        return max;
+        return subMaxLength;
     }
 
     public static void main(String[] args) {
