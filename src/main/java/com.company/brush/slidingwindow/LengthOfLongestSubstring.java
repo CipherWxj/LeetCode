@@ -42,12 +42,31 @@ public class LengthOfLongestSubstring {
         return subMaxLength;
     }
 
+    public static int solution1(String s) {
+        int res = 0;
+        Map<Character, Integer> windowMap = new HashMap<>();
+        int left = 0, right = 0;
+
+        while (right < s.length()) {
+            char cur = s.charAt(right);
+            windowMap.put(cur, windowMap.getOrDefault(cur, 0) + 1);
+            right++;
+            while (windowMap.get(cur) > 1) {
+                char leftChar = s.charAt(left);
+                windowMap.put(leftChar, windowMap.get(leftChar) - 1);
+                left++;
+            }
+            res = Math.max(res, right - left);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         System.out.println("请输入一个字符串：");
         System.out.print("s= ");
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         s = s.substring(1, s.length() - 1);
-        System.out.println(solution(s));
+        System.out.println(solution1(s));
     }
 }
