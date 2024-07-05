@@ -13,47 +13,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SubarraySum {
-    public int solution(int[] nums, int k) {
-        int n = nums.length;
-        int count = 0; // 计数器
-        // 前缀和数组
-        // pre[i] 对应数组中前 i 位的和
-        int[] pre = new int[n + 1];
-        // 最左边边界值 pre[0]=0
-        pre[0] = 0;
-        // map 记录已经存在的前缀和
-        Map<Integer, Integer> map = new HashMap<>();
-        // 将边界值添加到 map 中
-        map.put(pre[0], 1);
-        // 遍历
-        for (int i = 0; i < n; i++) {
-            // 计算从左到第 i 位的前缀和
-            pre[i + 1] = pre[i] + nums[i];
-            // 核心！！！！！
-            // 假设子数组索引为 [j, i],则 pre[i + 1] - pre[j + 1] = k
-            if (map.containsKey(pre[i + 1] - k)) {
-                count += map.get(pre[i + 1] - k);
+    public static int solution(int[] nums, int k) {
+        // 初始化哈希表，key：从数组最左侧开始到某一位的和（前缀和），value：某个前缀和出现的次数
+        Map<Integer, Integer> preSumMap = new HashMap<>();
+        // preSum[i]表示从数组最左侧开始到第i-1位的和
+        // preSum[i+1]表示从数组最左侧开始到第i位的和
+        int[] preSum = new int[nums.length + 1];
+        int res = 0;
+        // 初始化
+        preSum[0] = 0;
+        preSumMap.put(preSum[0], 1);
+
+        for (int i = 0; i < nums.length; i++) {
+            preSum[i + 1] = preSum[i] + nums[i];
+            // 如果 数组最左侧开始到第i位的和减去第j位的前缀和等于k，即： preSum[i + 1] - pre[j] = k
+            // 那么 第j位到第i位的和就是k，[i,j]
+            // 取出次数累加
+            if (preSumMap.containsKey(preSum[i + 1] - k)) {
+                res += preSumMap.get(preSum[i + 1] - k);
             }
-            // 添加，注意重复
-            map.put(pre[i + 1], map.getOrDefault(pre[i + 1], 0) + 1);
+            // 将[0,i]的和作为第i+1位的前缀和放到preSumMap里，更新出现次数
+            preSumMap.put(preSum[i + 1], preSumMap.getOrDefault(preSum[i + 1], 0) + 1);
         }
-        return count;
+        return res;
     }
 
-    // 做一下空间复杂度优化，只需要保存前一位的 前缀和
-    public int solution2(int[] nums, int k) {
-        int n = nums.length;
-        int count = 0;
-        int pre = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(pre, 1);
-        for(int i = 0; i < n; i++) {
-            pre += nums[i];
-            if(map.containsKey(pre - k)) {
-                count += map.get(pre - k);
+    public static int solution2(int[] nums, int k) {
+        Map<Integer, Integer> preSumMap = new HashMap<>();
+        // preSum表示前缀和
+        int preSum = 0;
+        int res = 0;
+        preSumMap.put(preSum, 1);
+
+        for (int i = 0; i < nums.length; i++) {
+            preSum += nums[i];
+            if (preSumMap.containsKey(preSum - k)) {
+                res += preSumMap.get(preSum - k);
             }
-            map.put(pre, map.getOrDefault(pre, 0) + 1);
+            preSumMap.put(preSum, preSumMap.getOrDefault(preSum, 0) + 1);
         }
-        return count;
+        return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solution(new int[]{1, 1, 1}, 2));
     }
 }

@@ -23,7 +23,7 @@ public class CheckInclusion {
         }
         // 窗口集合，记录窗口中满足条件的字符的出现次数
         Map<Character, Integer> windowMap = new HashMap<>();
-        // 窗口左右边界 [left, right - 1]
+        // 窗口左右边界 [left, right - 1)
         int left = 0, right = 0;
         // 有效字符数量，标识窗口中满足条件的字符的个数
         int validCharNum = 0;
