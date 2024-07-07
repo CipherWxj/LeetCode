@@ -14,30 +14,29 @@ import java.util.Scanner;
 
 public class FirstMissingPositive {
     public static int solution(int[] nums) {
+        // 数组长度为n，如果元素为1到n且不重复，那么缺失的第一个正数就是n+1，
+        // 如果元素有重复或有大于n的整数或有小于1的整数，那么缺失的第一个正数一定在[1,n]之间，综上，结果一定在[1,n+1]之间。
         int n = nums.length;
-        // 第一遍遍历
-        // 首先，我们要找的数一定在区间 [1，n+1] 内,只有当数组中全部包括 [1,n], 才返回 n+1
-        // 然后，我们将数组的索引 i 作为哈希值，即 元素 1 放到 索引为 0 的位置
         for (int i = 0; i < n; i++) {
-            // 如果元素 nums[i] 在 [1,n] 之间，将它放到 nums[i] - 1 的位置
-            // 这个地方用 while 是因为一次交换后的元素可能也满足，我们继续判断交换，用if就忽略了交换后的元素
-            while (nums[i] > 0 && nums[i] < n + 1 && nums[i] != nums[nums[i] - 1]) {
-                swap(nums, i, nums[i] - 1);
+            // 【原地哈希】：将数组元素nums[i]放到第nums[i]个位置处
+            // 如果元素nums[i]在[1,n]之间，就将这个元素与nums[i] - 1位置（第nums[i]个位置）的元素交换
+            // 交换后的元素如果还在[1,n]之间，继续交换，所以用while循环
+            while (nums[i] >= 1 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {
+//                int temp = nums[i];
+//                nums[i] = nums[nums[i] - 1];
+//                nums[nums[i] - 1] = temp;
+                // 这里交换数组元素只能先给nums[i] - 1处赋值，先给nums[i]赋值，nums[i] - 1就变了……
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
             }
         }
-        // 全部放好后，只需要比较 元素值和索引的关系，遇到的第一个不满足条件的返回
-        for (int i = 0; i < n; i++) {
-            if (nums[i] != i + 1) return i + 1;
+        for (int j = 0; j < n; j++) {
+            if (nums[j] != j + 1) return j + 1;
         }
-        // 全部满足说明数组中n个元素对应[1,n]，返回n+1
         return n + 1;
     }
 
-    public static void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
