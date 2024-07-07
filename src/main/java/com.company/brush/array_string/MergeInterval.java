@@ -18,33 +18,28 @@ import java.util.List;
 public class MergeInterval {
     public static int[][] solution(int[][] intervals) {
         if (intervals.length == 0 || intervals.length == 1) return intervals;
-
-        // 按左区间从大到小排序
-        // 注意这个匿名内部类的写法
+        // 重写比较器，根据区间左端点从小到大排序
+        // 排序之后，只有考虑区间的右边界，左边界不用考虑
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
                 return o1[0] - o2[0];
             }
         });
+        // list便于操作
+        List<int[]> res = new ArrayList<>();
 
-        List<int[]> list = new ArrayList<>();
-        // 初始化 已合并区间 的 左边界和右边界
-        int left = intervals[0][0], right = intervals[0][1];
-        for (int i = 1; i < intervals.length; i++) {
-            // 后一区间的左边界 和 已合并区间的右边界比较
-            // 有重复区域
-            if (intervals[i][0] <= right) {
-                right = Math.max(right, intervals[i][1]);
-            } else { // 无重复区域
-                list.add(new int[]{left, right});
-                left = intervals[i][0];
-                right = intervals[i][1];
+        for (int i = 0; i < intervals.length; i++) {
+            // 遍历到的区间的左右边界
+            int left = intervals[i][0], right = intervals[i][1];
+            // 当前区间与已经合并的区间不重合，将当前区间加入结果中
+            // 兼容第一个区间
+            if (res.size() == 0 || res.get(res.size() - 1)[1] < left) {
+                res.add(new int[]{left, right});
+            } else { // 当前区间与已经遍历的区间重合，合并区间，更新右边界，左边界已经排序过了，一定小于等于已经合并的区间
+                res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], right);
             }
         }
-        // 最后一个不要忘了添加
-        list.add(new int[]{left, right});
-        // List.toArray 方法的用法
-        return list.toArray(new int[list.size()][]);
+        return res.toArray(new int[res.size()][]);
     }
 }
