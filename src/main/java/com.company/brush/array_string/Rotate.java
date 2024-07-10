@@ -30,13 +30,5 @@ public class Rotate {
                 matrix[n][len - 1 - m] = temp;
             }
         }
-//		// 沿横对称轴做轴对称翻转
-//		for(int n = 0; n < len; n++){
-//            for(int m = 0; m < len / 2; m++){
-//                int temp = matrix[m][n];
-//                matrix[m][n] = matrix[len - 1 - m][n];
-//                matrix[len - 1 - n][m] = temp;
-//            }
-//        }
     }
 }
