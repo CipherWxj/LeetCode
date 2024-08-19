@@ -18,19 +18,26 @@ import java.util.Set;
 public class GetIntersectionNode {
     // 哈希表
     public ListNode solution1(ListNode headA, ListNode headB) {
-        Set<ListNode> set = new HashSet<>();
+        // 初始化哈希表，存储链表A的所有结点
+        Set<ListNode> nodeSet = new HashSet<>();
+        // 遍历链表A，放到nodeSet里
         while (headA != null) {
-            set.add(headA);
+            nodeSet.add(headA);
             headA = headA.next;
         }
+        // 遍历链表B，与nodeSet里的节点比较，如果nodeSet里存在遍历到的节点，就是相交的头结点
         while (headB != null) {
-            if (set.contains(headB)) return headB;
+            if (nodeSet.contains(headB)) return headB;
             headB = headB.next;
         }
         return null;
     }
 
     // 双指针
+    // 假设链表 headA 和 headB 的长度分别是 m 和 n，
+    // 链表 headA 的不相交部分有 a 个节点，链表 headB 的不相交部分有 b 个节点，两个链表相交的部分有 c 个节点，
+    // 则有 a+c=m，b+c=n。
+    // 如果相交，指针a 走了 a+c+b，指针b 走了b+c+a，相等。
     public ListNode solution2(ListNode headA, ListNode headB) {
         if (headA == null || headB == null) return null;
         ListNode a = headA, b = headB;
