@@ -22,6 +22,7 @@ public class ReverseList {
         if (head == null || head.next == null) {
             return head;
         }
+        // 递归深入到最后一个节点
         ListNode temp = solution1(head.next);
         head.next.next = head; // 反转操作
         head.next = null; // 断开原指针
@@ -30,14 +31,18 @@ public class ReverseList {
 
     // 迭代
     public static ListNode solution2(ListNode head) {
-        if (head == null) return null;
-        ListNode last = null; // 上一节点（原链表）
-        ListNode cur = head; // 当前节点
-        while (cur != null) {
-            ListNode next = cur.next; // 下一节点（原链表）
-            cur.next = last; // 反转
-            last = cur; // 上一节点右移
-            cur = next; // 当前节点右移
+        // 指向原链表上一个节点的指针
+        ListNode last = null;
+        // 遍历
+        while (head != null) {
+            // 当前处理的节点
+            ListNode cur = head;
+            // 后移
+            head = head.next;
+            // 反转
+            cur.next = last;
+            // 更新反转链表的头节点
+            last = cur;
         }
         return last;
     }
