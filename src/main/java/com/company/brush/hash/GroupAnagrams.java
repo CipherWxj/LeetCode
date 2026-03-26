@@ -8,10 +8,9 @@
  * <p>输出描述:
  * [["bat"],["nat","tan"],["ate","eat","tea"]]
  */
-package com.company.brush.hashtable;
+package com.company.brush.hash;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.*;
 

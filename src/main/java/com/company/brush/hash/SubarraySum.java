@@ -7,7 +7,7 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.hashtable;
+package com.company.brush.hash;
 
 import java.util.HashMap;
 import java.util.Map;
