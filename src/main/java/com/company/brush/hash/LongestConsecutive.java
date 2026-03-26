@@ -1,3 +1,10 @@
+package com.company.brush.hash;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author: Wxj
  * 128. 最长连续序列
@@ -8,79 +15,34 @@
  * <p>输出描述:
  * 4
  */
-package com.company.brush.hash;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 public class LongestConsecutive {
-    public static int solution(int[] nums) {
-        // 数组为空的情况优先排除
-        if (nums.length == 0) return 0;
-
-        // 初始化一个哈希表，key：连续序列的左边界，value：连续序列的右边界
-        Map<Integer, Integer> consecutiveMap = new HashMap<>();
-        // 初始化map，假设每个元素都是一个连续序列
+    private static int longestConsecutive(int[] nums) {
+        if (nums.length == 0 || nums.length == 1) return nums.length;
+        // 将数组转换为哈希表,去重
+        Set<Integer> set = new HashSet<>();
+        for (int j : nums) {
+            set.add(j);
+        }
+        // 初始化最大长度为0
+        int max = 0;
         for (int num : nums) {
-            consecutiveMap.put(num, num);
-        }
-        // 最大长度
-        int maxLength = 1;
-        // 遍历，假设以遍历的数为左边界
-        for (int leftNum : nums) {
-            // 如果比 leftNum 小1的数存在，那么最长连续序列的左边界必定从 leftNum - 1 开始，为了减少计算复杂度，跳过
-            // 如果比 leftNum 小1的数不存在，那么最长连续序列的左边界可以是 leftNum，向右遍历，更新右边界
-            // 更新到最后，consecutiveMap中只有 区间最长连续序列 的起始位置key-value会更新，保证了O(n)的时间复杂度
-            if (!consecutiveMap.containsKey(leftNum - 1)) {
-                int rightNum = consecutiveMap.get(leftNum);
-                // 依次向右+1，直到区间连续序列最长
-                while (consecutiveMap.containsKey(rightNum + 1)) {
-                    rightNum = consecutiveMap.get(rightNum + 1);
-                }
-                // 更新不更新的没啥实际作用，所以代码可以优化下
-                consecutiveMap.put(leftNum, rightNum);
-                maxLength = Math.max(maxLength, rightNum - leftNum + 1);
+            // 如果哈希Set中存在前一个num-1,最大长度一定比以 当前数num 为起始位置的长度更长,跳过
+            if (set.contains(num - 1)) continue;
+            // 以 当前数num 为起始位置的连续序列的最大长度,初始化为1
+            int curMax = 1;
+            // 向后遍历,更新以 当前数num 为起始位置的最大长度
+            while (set.contains(num + 1)) {
+                curMax++;
+                num++;
             }
+            // 比较,更新全局最大长度
+            max = Math.max(max, curMax);
         }
-        return maxLength;
-    }
-
-    public static int solutionPlus(int[] nums) {
-        // 数组为空的情况优先排除
-        if (nums.length == 0) return 0;
-
-        // 初始化一个哈希set，key：连续序列的左边界
-        Set<Integer> consecutiveSet = new HashSet<>();
-        // 去重
-        for (int num : nums) {
-            consecutiveSet.add(num);
-        }
-        // 最大长度
-        int maxLength = 1;
-        // 遍历，假设以遍历的数为左边界
-        for (int leftNum : nums) {
-            // 如果比 leftNum 小1的数存在，那么最长连续序列的左边界必定从 leftNum - 1 开始，为了减少计算复杂度，跳过
-            // 如果比 leftNum 小1的数不存在，那么最长连续序列的左边界可以是 leftNum，向右遍历，更新右边界
-            // 更新到最后，consecutiveMap中只有 区间最长连续序列 的起始位置key-value会更新，保证了O(n)的时间复杂度
-            if (!consecutiveSet.contains(leftNum - 1)) {
-                int rightNum = leftNum;
-                // 依次向右+1，直到区间连续序列最长
-                while (consecutiveSet.contains(rightNum + 1)) {
-                    rightNum = rightNum + 1;
-                }
-                maxLength = Math.max(maxLength, rightNum - leftNum + 1);
-            }
-        }
-        return maxLength;
+        return max;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{3, 7, 2, 8, 4, 6, 0, 1};
-        // consecutiveMap的结构如下：
-        // key：  3, 7, 2, 8, 4, 6, 0, 1
-        // value：3, 7, 2, 8, 4, 8, 4, 1
-        System.out.println(solution(nums));
+        int[] nums = {100, 4, 200, 1, 3, 2};
+        System.out.println(longestConsecutive(nums));
     }
 }
