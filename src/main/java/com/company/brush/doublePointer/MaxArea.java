@@ -20,15 +20,15 @@ public class MaxArea {
         int maxArea = 0;
         // 假设高一定,底边最长时,面积最长
         int left = 0, right = height.length - 1;
-        while (left < right){
+        while (left < right) {
             // 计算当前位置最大面积
             int curArea = (right - left) * Math.min(height[left], height[right]);
             // 比较更新全局最大面积
             maxArea = Math.max(maxArea, curArea);
             // 根据木桶原理,短板一侧向中间移动
-            if(height[left] < height[right]){
+            if (height[left] < height[right]) {
                 left++;
-            }else {
+            } else {
                 right--;
             }
         }
@@ -36,7 +36,7 @@ public class MaxArea {
     }
 
     public static void main(String[] args) {
-        int[] height = {1,8,6,2,5,4,8,3,7};
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
         System.out.println(maxArea(height));
     }
 }
