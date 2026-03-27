@@ -16,7 +16,7 @@
  * <p>输出描述:
  * [1,3,2]
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 public class NextPermutation {
     public void solution(int[] nums) {

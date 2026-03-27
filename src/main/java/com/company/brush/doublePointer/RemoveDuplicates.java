@@ -8,7 +8,7 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 import java.util.Scanner;
 

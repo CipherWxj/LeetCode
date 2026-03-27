@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [[-1,-1,2],[-1,0,1]]
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

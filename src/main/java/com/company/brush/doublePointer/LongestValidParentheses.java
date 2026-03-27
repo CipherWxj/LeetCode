@@ -7,7 +7,7 @@
  * <p>输出描述:
  * 4
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 /*
  * 方法1：动态规划 com/company/brush/dynamicprogramming/LongestValidParentheses.java

@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [1,3,2,4]
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 import java.util.Arrays;
 

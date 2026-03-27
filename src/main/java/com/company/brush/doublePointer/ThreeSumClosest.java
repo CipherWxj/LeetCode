@@ -10,7 +10,7 @@
  * 2
  * 解释：与 target 最接近的和是 2 (-1 + 2 + 1 = 2) 。
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 import java.util.Arrays;
 

@@ -23,7 +23,7 @@
  * <p>输出描述:
  * 0
  */
-package com.company.brush.doublepointer;
+package com.company.brush.doublePointer;
 
 public class CompareVersion {
 
