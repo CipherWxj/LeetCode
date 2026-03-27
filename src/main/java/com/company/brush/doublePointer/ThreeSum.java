@@ -16,7 +16,7 @@ import java.util.List;
  * [[-1,-1,2],[-1,0,1]]
  */
 public class ThreeSum {
-    public static List<List<Integer>> threeSum(int[] nums) {
+    private static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         // 从大到小排序
         Arrays.sort(nums);
