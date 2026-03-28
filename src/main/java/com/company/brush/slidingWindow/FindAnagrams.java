@@ -1,5 +1,12 @@
+package com.company.brush.slidingWindow;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 438. 找到字符串中所有字母异位词
  * 给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。
  * 异位词 指由相同字母重排列形成的字符串（包括相同的字符串）。
@@ -8,60 +15,63 @@
  * <p>输出描述:
  * [0,6]
  */
-package com.company.brush.slidingWindow;
-
-import java.util.*;
-
 public class FindAnagrams {
-    public static List<Integer> solution(String s, String p) {
+    private static List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new ArrayList<>();
-        // 标准集合
-        Map<Character, Integer> pMap = new HashMap<>();
-        // 初始化标准集合
-        for (int i = 0; i < p.length(); i++) {
-            char c = p.charAt(i);
-            pMap.put(c, pMap.getOrDefault(c, 0) + 1);
+        int len = p.length();
+        // 初始化目标字符串的哈希表，key：目标字符串中存在的字符，value：字符出现的次数
+        Map<Character, Integer> targetMap = new HashMap<>();
+        for (int i = 0; i < len; i++) {
+            targetMap.put(p.charAt(i), targetMap.getOrDefault(p.charAt(i), 0) + 1);
         }
-        // 窗口集合，记录窗口中满足条件的字符的出现次数
-        Map<Character, Integer> windowMap = new HashMap<>();
-        // 窗口左右边界 [left, right - 1)
-        int left = 0, right = 0;
-        // 有效字符数量，标识窗口中满足条件的字符的个数
-        int validCharNum = 0;
-        // 右边界遍历，扩大窗口范围
-        while (right < s.length()) {
-            char cur = s.charAt(right);
-            right++;
-            // 如果标准集中存在当前字符，先更新窗口集合，再更新有效字符数
-            if (pMap.containsKey(cur)) {
-                // 更新窗口集合中的字符数量
-                windowMap.put(cur, windowMap.getOrDefault(cur, 0) + 1);
-                // 如果窗口集合中某个字符的数量 = 标准集中的该字符数量，有效字符数+1
-                if (windowMap.get(cur).equals(pMap.get(cur))) validCharNum++;
-
-            }
-            System.out.println(left + "**" + right);
-            // 当 窗口长度 = 标准字符串的长度 时，判断并移动窗口
-            while (right - left >= p.length()) {
-                // 此时如果有效字符数量与标准集中的字符数量相等，那么窗口范围内的字符串就是一个异位词
-                if (validCharNum == pMap.size()) res.add(left);
-                // 被移出窗口的字符
-                char leftChar = s.charAt(left);
-                // 移动左侧边界，缩小窗口
-                left++;
-                // 如果被移出窗口的字符是标准集中的字符，先更新有效字符数，再更新窗口集合
-                if (pMap.containsKey(leftChar)) {
-                    // 如果窗口集合中某个字符的数量 = 标准集中的该字符数量，有效字符数量-1
-                    if (windowMap.get(cur).equals(pMap.get(cur))) validCharNum--;
-                    // 更新窗口集合
-                    windowMap.put(leftChar, windowMap.get(leftChar) - 1);
+        // 初始化遍历子串的哈希表，key：字符串中存在的字符，value：字符出现的次数
+        Map<Character, Integer> map = new HashMap<>();
+        // 起始和结束位置，初始化都为0
+        int start = 0, end = 0;
+        while (end < s.length()) {
+            char c = s.charAt(end);
+            // 遍历到目标字符串中不存在的字符，直接看下一位
+            if (!targetMap.containsKey(c)) {
+                // 需要把map里存在的字符数量减掉，当前end位置是不存在的字符，不用管
+                while (start < end) {
+                    map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                    start++;
                 }
+                // 起始和结束位置都从下一位开始重新计算
+                start++;
+                end++;
+                continue;
             }
+
+            // 当前字符在子串中的数量（不包含当前end位置）
+            int cExistsNum = map.getOrDefault(c, 0);
+            // 子串中当前字符的数量已经与目标字符串中字符的数量，更新起始位置
+            if (cExistsNum == targetMap.get(c)) {
+                // 直到子串中第一次出现当前字符，左侧的字符在map中的数量都要减掉
+                while (c != s.charAt(start)) {
+                    map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                    start++;
+                }
+                // 更新起始位置
+                start++;
+            } else { // 子串中当前字符的数量 小于 目标字符串中字符的数量，当前end位置的数量加进去，加1
+                map.put(c, cExistsNum + 1);
+            }
+
+            // 如果子串长度等于目标字符串的长度，将起始位置放到结果List里，起始位置右移一位
+            if (end - start + 1 == len) {
+                res.add(start);
+                map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
+                start++;
+            }
+            // 每次结束位置都右移
+            end++;
         }
         return res;
     }
 
     public static void main(String[] args) {
-        solution("cbaebabacd", "abc");
+        System.out.println(findAnagrams("cbaebabacd", "abc"));
+        System.out.println(findAnagrams("abab", "ab"));
     }
 }
