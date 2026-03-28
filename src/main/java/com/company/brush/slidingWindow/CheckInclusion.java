@@ -8,7 +8,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 
 import java.util.HashMap;
 import java.util.Map;

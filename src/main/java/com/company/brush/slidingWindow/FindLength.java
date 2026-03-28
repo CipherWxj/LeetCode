@@ -7,7 +7,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 /*
  * 方法1：动态规划 com/company/brush/dynamicprogramming/FindLength.java
  * 方法2：滑动窗口 com/company/brush/slidingwindow/FindLength.java

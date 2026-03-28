@@ -8,7 +8,7 @@
  * <p>输出描述:
  * [0,6]
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 
 import java.util.*;
 

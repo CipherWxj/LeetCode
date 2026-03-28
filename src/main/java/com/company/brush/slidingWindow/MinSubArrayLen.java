@@ -9,7 +9,7 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 
 public class MinSubArrayLen {
     public int solution(int[] nums, int target) {

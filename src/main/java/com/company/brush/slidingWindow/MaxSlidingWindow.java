@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [3,3,5,5,6,7]
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 
 import java.util.*;
 

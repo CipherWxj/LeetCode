@@ -10,7 +10,7 @@
  * <p>输出描述:
  * "BANC"
  */
-package com.company.brush.slidingwindow;
+package com.company.brush.slidingWindow;
 
 import java.util.HashMap;
 import java.util.Map;
