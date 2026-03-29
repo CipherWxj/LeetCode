@@ -1,5 +1,9 @@
+package com.company.brush.slidingWindow;
+
+import java.util.*;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 239. 滑动窗口最大值
  * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
  * 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
@@ -9,74 +13,77 @@
  * <p>输出描述:
  * [3,3,5,5,6,7]
  */
-package com.company.brush.slidingWindow;
-
-import java.util.*;
-
 public class MaxSlidingWindow {
-    // 单调队列
-    public static int[] solution(int[] nums, int k) {
-        // 双端队列，存储的元素为数组下标
-        // 下标对应的数组元素从小到大排列，即：队列头部存储的下标对应的数组元素最大，尾部存储的下标对应的数组元素最小
-        Deque<Integer> deque = new LinkedList<>();
-        // 初始化队列，第一个窗口
+    /**
+     * 优先队列
+     */
+    private static int[] maxSlidingWindowWithPriorityQueue(int[] nums, int k) {
+        // 优先队列，存储的是数组，数组第一位o[0]为nums中遍历到的数，0[1]为数0[0]在nums中的位置
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(new Comparator<int[]>() {
+            // 重写比较器，
+            // 当两个数不相等时，根据数从大到小排列（大根堆）: o2[0] - o1[0]
+            // 当两个数相等时，后出现的数排在前面，即索引从大到小排列：o2[1] - o1[1]，这么做的好处在执行移除操作时减少操作
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] != o2[0] ? o2[0] - o1[0] : o2[1] - o1[1];
+            }
+        });
+        // 结果数组
+        int[] res = new int[nums.length - k + 1];
+        // 先处理前k个数
         for (int i = 0; i < k; i++) {
-            // 从队列尾部开始，向队列头部遍历，找到i应该在的队列位置
-            // 比nums[i]小的元素对应的下标都丢弃，因为这些下标只可能在i的左边，窗口左侧覆盖它们的时候一定覆盖i
-            while (!deque.isEmpty() && nums[i] > nums[deque.peekLast()]) {
+            priorityQueue.offer(new int[]{nums[i], i});
+        }
+        res[0] = priorityQueue.peek()[0];
+        // 后边遍历时需要去除不在窗口里的数
+        for (int j = k; j < nums.length; j++) {
+            priorityQueue.offer(new int[]{nums[j], j});
+            // 当优先队列队头（堆顶）元素（最大的数）不在窗口范围里，需要移除
+            // 只要最大的元素在窗口范围里，就是滑动窗口最大值
+            while (!priorityQueue.isEmpty() && priorityQueue.peek()[1] < j - k + 1) {
+                priorityQueue.poll();
+            }
+            res[j - k + 1] = priorityQueue.peek()[0];
+        }
+        return res;
+    }
+
+    /**
+     * 单调队列
+     */
+    private static int[] maxSlidingWindowWithDeque(int[] nums, int k) {
+        // 单调队列，双端队列中存储的是nums中数的位置索引，保证队头索引对应的数最大
+        Deque<Integer> deque = new LinkedList<Integer>();
+        // 结果数组
+        int[] res = new int[nums.length - k + 1];
+        // 先处理前k个数
+        for (int i = 0; i < k; i++) {
+            // 保证队头存储的索引对应的数最大，从队尾开始移除小于当前数的索引
+            while (!deque.isEmpty() && nums[i] >= nums[deque.peekLast()]) {
                 deque.pollLast();
             }
             deque.offerLast(i);
         }
-        // 初始化结果数组，长度算一下
-        int[] res = new int[nums.length - k + 1];
-        // 第一个窗口最大的元素
         res[0] = nums[deque.peekFirst()];
-        // 窗口右侧向右遍历
+        // 后边遍历时需要去除不在窗口里的数
         for (int j = k; j < nums.length; j++) {
-            while (!deque.isEmpty() && nums[j] > nums[deque.peekLast()]) {
+            while (!deque.isEmpty() && nums[j] >= nums[deque.peekLast()]) {
                 deque.pollLast();
             }
             deque.offerLast(j);
-            // 从队列头部开始，向队列尾部遍历
-            // 如果队列头部存储的下标不在窗口范围内了，移除
-            while (deque.peekFirst() <= j - k) {
+            // 队头索引不在窗口范围里，移除队头元素
+            while (!deque.isEmpty() && deque.peekFirst() < j - k + 1) {
                 deque.pollFirst();
             }
-            // 队列头部存储的下标对应元素最大
             res[j - k + 1] = nums[deque.peekFirst()];
         }
         return res;
     }
 
-    public static int[] solution1(int[] nums, int k) {
-        // 优先队列
-        // 队列数组中第一个元素为下标对应的值，第二个元素为下标
-        // 重写比较器，默认升序，重写为降序
-        PriorityQueue<int[]> pQueue = new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                // 如果元素不同，按元素降序排列；如果元素相同，按下标降序排列（后出现的最优先）
-                return o2[0] != o1[0] ? o2[0] - o1[0] : o2[1] - o1[1];
-            }
-        });
-        for (int i = 0; i < k; i++) {
-            pQueue.offer(new int[]{nums[i], i});
-        }
-        int[] res = new int[nums.length - k + 1];
-        res[0] = pQueue.peek()[0];
-        for (int j = k; j < nums.length; j++) {
-            pQueue.offer(new int[]{nums[j], j});
-            // 最大元素不在窗口内了
-            while (pQueue.peek()[1] <= j - k) {
-                pQueue.poll();
-            }
-            res[j - k + 1] = pQueue.peek()[0];
-        }
-        return res;
-    }
-
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(solution(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+        int[] nums = {1, 3, -1, -3, 5, 3, 6, 7};
+        int k = 3;
+        System.out.println(Arrays.toString(maxSlidingWindowWithPriorityQueue(nums, k)));
+        System.out.println(Arrays.toString(maxSlidingWindowWithDeque(nums, k)));
     }
 }
