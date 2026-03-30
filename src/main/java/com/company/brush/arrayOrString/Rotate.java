@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [[7,4,1],[8,5,2],[9,6,3]]
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 public class Rotate {
     public void solution(int[][] matrix) {

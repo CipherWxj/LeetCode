@@ -17,7 +17,7 @@
  * <p>输出描述:
  * -42
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 public class StringToInteger {
 

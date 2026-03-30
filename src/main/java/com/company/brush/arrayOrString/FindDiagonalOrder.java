@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [1,2,4,7,5,3,6,8,9]
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 import java.util.Arrays;
 

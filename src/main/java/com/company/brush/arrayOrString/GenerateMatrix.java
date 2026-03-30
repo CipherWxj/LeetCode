@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [[1,2,3],[8,9,4],[7,6,5]]
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 public class GenerateMatrix {
     public int[][] solution(int n) {

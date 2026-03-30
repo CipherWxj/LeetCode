@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [[1,0,1],[0,0,0],[1,0,1]]
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 import java.util.HashSet;
 import java.util.Set;

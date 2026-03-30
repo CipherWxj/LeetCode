@@ -9,7 +9,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 public class SearchMatrix {
     // 暴力遍历

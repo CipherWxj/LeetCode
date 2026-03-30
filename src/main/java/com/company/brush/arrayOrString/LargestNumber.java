@@ -8,7 +8,7 @@
  * <p>输出描述:
  * "9534330"
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -11,7 +11,7 @@
  * <p>输出描述:
  * blue is sky the
  */
-package com.company.brush.array_string;
+package com.company.brush.arrayOrString;
 
 import java.util.Scanner;
 
