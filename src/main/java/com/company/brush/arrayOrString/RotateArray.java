@@ -1,5 +1,9 @@
+package com.company.brush.arrayOrString;
+
+import java.util.Arrays;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 189. 轮转数组
  * 给给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。
  * <p>输入描述:
@@ -7,35 +11,21 @@
  * <p>输出描述:
  * [5,6,7,1,2,3,4]
  */
-package com.company.brush.arrayOrString;
-
-import java.util.Arrays;
-
 public class RotateArray {
-    public static void solution(int[] nums, int k) {
-        int[] temp = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            // 循环时取余
-            temp[(i + k) % nums.length] = nums[i];
-        }
-        System.arraycopy(temp, 0, nums, 0, nums.length);
+    private static void rotateArray(int[] nums, int k) {
+        // k 有可能大于数组长度，需要取余
+        k = k % nums.length;
+        // 先反转前 n-k 个元素
+        rotateWithIndex(nums, 0, nums.length - k - 1);
+        // 再反转后 k 个元素
+        rotateWithIndex(nums, nums.length - k, nums.length - 1);
+        // 最后反转整个数组
+        rotateWithIndex(nums, 0, nums.length - 1);
     }
 
-    // 数学方法
-    public static void solution1(int[] nums, int k) {
-        // 原始数组：[1,2,3,4,5,6,7]
-        // 翻转所有元素：[7,6,5,4,3,2,1]
-        reverse(nums, 0, nums.length - 1);
-        // 翻转 [0,k % n − 1] 区间的元素：[5,6,7,4,3,2,1]
-        reverse(nums, 0, k % nums.length - 1);
-        // 翻转 [k % n,n − 1] 区间的元素：[5,6,7,1,2,3,4]
-        reverse(nums, k % nums.length, nums.length - 1);
-    }
-
-    public static void reverse(int[] nums, int start, int end) {
-        int temp;
+    private static void rotateWithIndex(int[] nums, int start, int end) {
         while (start < end) {
-            temp = nums[start];
+            int temp = nums[start];
             nums[start] = nums[end];
             nums[end] = temp;
             start++;
@@ -45,7 +35,8 @@ public class RotateArray {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
-        solution(nums, 3);
+        int k = 3;
+        rotateArray(nums, k);
         System.out.println(Arrays.toString(nums));
     }
 }
