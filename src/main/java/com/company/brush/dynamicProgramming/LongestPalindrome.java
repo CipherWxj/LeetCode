@@ -8,7 +8,7 @@
  * <p>输出描述:
  * bab or aba
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.Scanner;
 

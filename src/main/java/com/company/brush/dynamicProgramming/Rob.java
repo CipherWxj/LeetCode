@@ -11,7 +11,7 @@
  * 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
  * 偷窃到的最高金额 = 2 + 9 + 1 = 12 。
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class Rob {
     public int solution(int[] nums) {

@@ -10,7 +10,7 @@
  * <p>输出描述:
  * 6
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class MaxSubArrayProduct {
     // 类比 最大子数组的和（leetcode 53）

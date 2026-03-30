@@ -11,7 +11,7 @@
  * 在第 4 天（股票价格 = 0）的时候买入，在第 6 天（股票价格 = 3）的时候卖出，这笔交易所能获得利润 = 3-0 = 3 。
  * 随后，在第 7 天（股票价格 = 1）的时候买入，在第 8 天 （股票价格 = 4）的时候卖出，这笔交易所能获得利润 = 4-1 = 3 。
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.Scanner;
 

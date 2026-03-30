@@ -17,9 +17,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.dynamicprogramming;
-
-import java.util.ArrayList;
+package com.company.brush.dynamicProgramming;
 
 public class NumDecodings {
 

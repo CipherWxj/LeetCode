@@ -8,7 +8,7 @@
  * <p>输出描述:
  * 4
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class MaximalSquare {
     public static int solution(char[][] matrix){

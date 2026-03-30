@@ -8,7 +8,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.HashSet;
 import java.util.List;

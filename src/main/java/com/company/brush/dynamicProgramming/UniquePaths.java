@@ -9,7 +9,7 @@
  * <p>输出描述:
  * 28
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class UniquePaths {
     public int solution(int m, int n){

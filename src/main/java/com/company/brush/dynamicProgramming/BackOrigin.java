@@ -8,7 +8,7 @@
  * 2
  * 解释：有 2 种方案，分别是 0->1->0 和 0->9->0
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class BackOrigin {
     public static int solution(int m, int n) {

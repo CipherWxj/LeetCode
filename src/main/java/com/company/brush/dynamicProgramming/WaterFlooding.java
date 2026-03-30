@@ -7,7 +7,7 @@
  * <p>输出描述:
  * 6
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 /*
  * 方法1：动态规划 com/company/brush/dynamicprogramming/WaterFlooding.java

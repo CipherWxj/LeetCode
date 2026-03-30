@@ -15,7 +15,7 @@
  * rorse -> rose (删除 'r')
  * rose -> ros (删除 'e')
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.Scanner;
 

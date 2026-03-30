@@ -9,7 +9,7 @@
  * <p>输出描述:
  * 3
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 // 对于[n, m]问题，首轮删除环中第 m 个数字后，得到一个长度为 n - 1 的数字环。
 // 由于有可能 m > n ，因此删除的数字为 (m - 1) % n ，

@@ -11,7 +11,7 @@
  * <p>输出描述:
  * 5
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.HashMap;
 import java.util.Map;

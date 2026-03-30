@@ -15,7 +15,7 @@
  * 4 1 8 3
  * 自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.List;
 

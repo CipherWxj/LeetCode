@@ -10,7 +10,7 @@
  * 3
  * 解释：11 = 5 + 5 + 1
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 import java.util.Arrays;
 

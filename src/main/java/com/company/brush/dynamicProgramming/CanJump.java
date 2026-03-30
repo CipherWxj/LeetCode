@@ -10,7 +10,7 @@
  * true
  * 解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。
  */
-package com.company.brush.dynamicprogramming;
+package com.company.brush.dynamicProgramming;
 
 public class CanJump {
     public static boolean solution1(int[] nums) {
