@@ -1,5 +1,9 @@
+package com.company.brush.math;
+
+import java.util.Arrays;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 238. 除自身以外数组的乘积
  * 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。
  * 题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。
@@ -9,35 +13,31 @@
  * <p>输出描述:
  * [0,0,9,0,0]
  */
-package com.company.brush.math;
-
-import java.util.Arrays;
-
 public class ProductExceptSelf {
-    public static int[] solution(int[] nums) {
-        // 初始化左乘积数组
-        // leftProduct[i]表示位置i左侧所有数字的乘积，即数组nums中[0,i)的乘积
-        int[] leftProduct = new int[nums.length];
-        leftProduct[0] = 1;
-        for (int i = 1; i < nums.length; i++) {
-            leftProduct[i] = nums[i - 1] * leftProduct[i - 1];
+    private static int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        // productLeft[i]表示第i位左侧所有数的乘积
+        int[] productLeft = new int[len];
+        productLeft[0] = 1;
+        for (int l = 1; l < len; l++) {
+            productLeft[l] = nums[l - 1] * productLeft[l - 1];
         }
-        // 初始化右乘积数组
-        // leftProduct[i]表示位置i右侧所有数字的乘积，即数组nums中(i,n-1]的乘积
-        int[] rightProduct = new int[nums.length];
-        rightProduct[nums.length - 1] = 1;
-        for (int j = nums.length - 2; j >= 0; j--) {
-            rightProduct[j] = nums[j + 1] * rightProduct[j + 1];
+        // productRight[i]表示第i位右侧所有数的乘积
+        int[] productRight = new int[len];
+        productRight[len - 1] = 1;
+        for (int r = len - 2; r > -1; r--) {
+            productRight[r] = nums[r + 1] * productRight[r + 1];
         }
-        // 左侧乘积*右侧乘积
-        int[] answers = new int[nums.length];
-        for (int k = 0; k < nums.length; k++) {
-            answers[k] = leftProduct[k] * rightProduct[k];
+        // answer[i]等于第i位左侧所有数的乘积乘以第i位右侧所有数的乘积
+        int[] answer = new int[len];
+        for (int i = 0; i < len; i++) {
+            answer[i] = productLeft[i] * productRight[i];
         }
-        return answers;
+        return answer;
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(solution(new int[]{1, 2, 3, 4})));
+        System.out.println(Arrays.toString(productExceptSelf(new int[]{1, 2, 3, 4})));
+        System.out.println(Arrays.toString(productExceptSelf(new int[]{-1, 1, 0, -3, 3})));
     }
 }
