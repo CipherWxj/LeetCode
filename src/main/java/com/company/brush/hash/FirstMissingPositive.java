@@ -1,5 +1,7 @@
+package com.company.brush.hash;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 41. 缺失的第一个正数
  * 给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
  * 请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。
@@ -8,46 +10,35 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.hash;
-
-import java.util.Scanner;
-
 public class FirstMissingPositive {
-    public static int solution(int[] nums) {
-        // 数组长度为n，如果元素为1到n且不重复，那么缺失的第一个正数就是n+1，
-        // 如果元素有重复或有大于n的整数或有小于1的整数，那么缺失的第一个正数一定在[1,n]之间，综上，结果一定在[1,n+1]之间。
+    private static int firstMissingPositive(int[] nums) {
         int n = nums.length;
+        // 缺失的第一个正数：
+        // 要么等于n+1，此时数组中n个数为1到n且不重复
+        // 要么在1到n之间，此时数组中存在负数 或 重复的数 或大于n的数，对于存在负数的情况，将负数变为大于n的正数，不影响结果
         for (int i = 0; i < n; i++) {
-            // 【原地哈希】：将数组元素nums[i]放到第nums[i]个位置处
-            // 如果元素nums[i]在[1,n]之间，就将这个元素与nums[i] - 1位置（第nums[i]个位置）的元素交换
-            // 交换后的元素如果还在[1,n]之间，继续交换，所以用while循环
-            while (nums[i] >= 1 && nums[i] <= n && nums[i] != nums[nums[i] - 1]) {
-//                int temp = nums[i];
-//                nums[i] = nums[nums[i] - 1];
-//                nums[nums[i] - 1] = temp;
-                // 这里交换数组元素只能先给nums[i] - 1处赋值，先给nums[i]赋值，nums[i] - 1就变了……
-                int temp = nums[nums[i] - 1];
-                nums[nums[i] - 1] = nums[i];
-                nums[i] = temp;
+            if (nums[i] <= 0) nums[i] = n + 1;
+        }
+        // 原地哈希，对于1到n，用 负号 标识 i+1 出现过
+        for (int i = 0; i < n; i++) {
+            // 实际的数都是正的，计算绝对值
+            int realNum = Math.abs(nums[i]);
+            // 绝对值在1到n之间，才需要标识
+            if (realNum <= n) {
+                nums[realNum - 1] = -Math.abs(nums[realNum - 1]);
             }
         }
-        for (int j = 0; j < n; j++) {
-            if (nums[j] != j + 1) return j + 1;
+        // 第一个没有标识的位置索引+1，即为缺失的第一个正数
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) return i + 1;
         }
+        // 都有标识，即为n+1
         return n + 1;
     }
 
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("请输入一个数组：");
-        String s = sc.nextLine();
-        s = s.substring(1, s.length() - 1);
-        String[] str = s.split(",");
-        int[] nums = new int[str.length];
-        for (int i = 0; i < str.length; i++) {
-            nums[i] = Integer.parseInt(str[i]);
-        }
-        System.out.println(solution(nums));
+        int[] nums = {3, 4, -1, 1};
+        System.out.println(firstMissingPositive(nums));
     }
 }
