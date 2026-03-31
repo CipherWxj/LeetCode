@@ -1,5 +1,12 @@
+package com.company.brush.enumeration;
+
+import com.alibaba.fastjson.JSON;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 54. 螺旋矩阵
  * 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
  * <p>输入描述:
@@ -7,40 +14,30 @@
  * <p>输出描述:
  * [1,2,3,6,9,8,7,4,5]
  */
-package com.company.brush.enumeration;
-
-import com.alibaba.fastjson.JSON;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class SpiralOrder {
-    public static List<Integer> solution(int[][] matrix) {
+    private static List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res = new ArrayList<>();
-        if (matrix.length == 0 || matrix[0].length == 0) return res;
-        // 初始化最外圈上下左右四条线
-        int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1;
-        // 逐渐向内圈缩小
-        while (left <= right && top <= bottom) {
-            // 顺时针
-            // 先遍历最上边一行，从左上顶点开始遍历，右上顶点放到下面最右列遍历
-            for (int r = left; r < right; r++) {
-                res.add(matrix[top][r]);
+        int m = matrix.length, n = matrix[0].length;
+        // 上下左右的边界
+        int top = 0, bottom = m - 1, left = 0, right = n - 1;
+        while (top <= bottom && left <= right) {
+            // 遍历最上层的行，一整行，避免只有一个元素时未遍历到
+            for (int i = left; i <= right; i++) {
+                res.add(matrix[top][i]);
             }
-            // 再遍历最右边一列，从右上顶点开始遍历，因为有下面的if，右下顶点也要遍历到，避免只剩一行或一列时少遍历
-            for (int b = top; b <= bottom; b++) {
-                res.add(matrix[b][right]);
+            // 遍历最右边的列，除第一行最后一列的元素外全部遍历
+            for (int j = top + 1; j <= bottom; j++) {
+                res.add(matrix[j][right]);
             }
-            // 为了兼容最内圈只剩一行或者一列的情况，防止重复遍历
-            if (left < right && top < bottom) {
-                // 再遍历最下边一行，从右下顶点左侧元素开始遍历，左下顶点放到最左列遍历
-                for (int l = right - 1; l > left; l--) {
-                    res.add(matrix[bottom][l]);
+            // 上、右边界遍历完后，需要判断下、左边界是否与上右边界重合，避免重复遍历
+            if (top < bottom) {
+                for (int i = right - 1; i > left; i--) {
+                    res.add(matrix[bottom][i]);
                 }
-                // 最后遍历最左边一列，从左下顶点开始遍历，左上顶点已经遍历过了，不用遍历
-                for (int t = bottom; t > top; t--) {
-                    res.add(matrix[t][left]);
+            }
+            if (left < right) {
+                for (int j = bottom; j > top; j--) {
+                    res.add(matrix[j][left]);
                 }
             }
             top++;
@@ -52,6 +49,7 @@ public class SpiralOrder {
     }
 
     public static void main(String[] args) {
-        System.out.println(JSON.toJSONString(solution(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}})));
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        System.out.println(JSON.toJSONString(spiralOrder(matrix)));
     }
 }

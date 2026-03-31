@@ -12,7 +12,7 @@ import com.alibaba.fastjson.JSON;
  * [[1,0,1],[0,0,0],[1,0,1]]
  */
 public class SetZeroes {
-    public static void setZeroes(int[][] matrix) {
+    private static void setZeroes(int[][] matrix) {
         int m = matrix.length, n = matrix[0].length;
         // 记录第一列是否有0，有则为true
         boolean firstColumnHasZero = false;
