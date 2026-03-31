@@ -17,7 +17,7 @@
  * <p>输出描述:
  * [null, null, null, 1, null, -1, 3, null, -1, 3, 4]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.HashMap;
 import java.util.Map;

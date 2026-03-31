@@ -9,7 +9,7 @@
  * <p>输出描述:
  * [7,8,0,7]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.*;
 

@@ -11,7 +11,7 @@
  * <p>输出描述:
  * [1,4,2,3]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class ReorderList {
     public ListNode solution(ListNode head) {

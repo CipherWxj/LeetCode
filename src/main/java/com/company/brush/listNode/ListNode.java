@@ -1,4 +1,4 @@
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class ListNode {
 

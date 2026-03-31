@@ -11,7 +11,7 @@
  * <p>输出描述:
  * 返回索引为 1 的链表节点
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.HashSet;
 import java.util.Set;

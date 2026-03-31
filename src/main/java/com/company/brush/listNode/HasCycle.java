@@ -11,7 +11,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.HashSet;
 import java.util.Set;

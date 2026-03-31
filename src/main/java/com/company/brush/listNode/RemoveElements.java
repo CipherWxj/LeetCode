@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [1,2,3,4,5]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

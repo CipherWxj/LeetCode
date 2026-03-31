@@ -8,7 +8,7 @@
  * <p>输出描述:
  * [4,0]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class GetKthFromEnd {
 

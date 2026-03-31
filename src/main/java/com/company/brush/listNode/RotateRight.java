@@ -7,7 +7,7 @@
  * <p>输出描述:
  * [4,5,1,2,3]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class RotateRight {
     public ListNode solution(ListNode head, int k) {

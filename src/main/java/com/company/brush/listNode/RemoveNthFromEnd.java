@@ -8,7 +8,7 @@
  * <p>输出描述:
  * [1,2,3,5]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class RemoveNthFromEnd {
     public ListNode solution(ListNode head, int n) {

@@ -1,31 +1,34 @@
 /**
  * @author: Wxj
- * 83. 删除排序链表中的重复元素
- * 存在一个按 升序排列 的链表，给你这个链表的头节点 head ，请你删除所有重复的元素，使每个元素 只出现一次 。
- * 返回同样按升序排列的结果链表。
+ * 82. 删除排序链表中的重复元素 II
+ * 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。
+ * 返回 已排序的链表 。
  * <p>输入描述:
- * [1,1,2,3,3]
+ * head = [1,2,3,3,4,4,5]
  * <p>输出描述:
- * [1,2,3]
+ * [1,2,5]
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class DeleteDuplicates {
-
-    // 迭代
+public class DeleteDuplicates2 {
     public static ListNode solution(ListNode head) {
         ListNode dummy = new ListNode();
         dummy.next = head;
         ListNode cur = dummy;
+        ListNode same;
         // 终止条件 cur.next 到最后一个节点
         while (cur.next != null && cur.next.next != null) {
             if (cur.next.val == cur.next.next.val) {
-                cur.next = cur.next.next;
+                same = cur.next; // 记录重复数字的节点
+                // 与重复数字相等则删除
+                while (cur.next != null && cur.next.val == same.val) {
+                    cur.next = cur.next.next;
+                }
             } else {
                 cur = cur.next;
             }
@@ -36,9 +39,16 @@ public class DeleteDuplicates {
     // 递归
     public static ListNode solution2(ListNode head) {
         if (head == null || head.next == null) return head;
-        head.next = solution2(head.next);
+        // 在 递 的过程中删除
         if (head.val == head.next.val) {
-            head = head.next;
+            // 删除 与 head.val 相等的节点
+            while (head.next != null && head.val == head.next.val){
+                head.next = head.next.next;
+            }
+            // 删除 head 节点
+            head = solution2(head.next);
+        }else {
+            head.next = solution2(head.next);
         }
         return head;
     }

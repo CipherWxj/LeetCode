@@ -8,7 +8,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.listnodes;
+package com.company.brush.listNode;
 
 public class IsPalindrome {
     public boolean solution(ListNode head) {
