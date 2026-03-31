@@ -38,7 +38,7 @@ public class ReverseBetween {
 
         // 将该段链表 反转,连接回原链表
         tail.next = null;
-        prev.next = ReverseList.solution1(head);
+        prev.next = ReverseList.reverseListWithWhile(head);
         head.next = next;
         return dummy.next;
     }
