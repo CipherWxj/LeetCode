@@ -1,49 +1,56 @@
-/**
- * @author: Wxj
- * 445. 两数相加 II
- * 给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
- * 你可以假设除了数字 0 之外，这两个数字都不会以零开头。
- * <p>输入描述:
- * l1 = [7,2,4,3]
- * l2 = [5,6,4]
- * <p>输出描述:
- * [7,8,0,7]
- */
 package com.company.brush.listNode;
 
-import java.util.*;
-
+/**
+ * @author: wangxinjian
+ * 2. 两数相加
+ * 给你两个非空的 链表 ，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储一位数字；
+ * 请你将两个数 相加 ，并以相同形式返回一个表示 和的链表。
+ * 你可以假设除了数字0之外，这两个数都不会以0开头。
+ * <p>输入描述:
+ * l1 = [2,4,3]
+ * l2 = [5,6,4]
+ * <p>输出描述:
+ * [7,0,8]
+ */
 public class AddTwoNumbers {
-    // 题目说不能反转，用栈模拟反转
-    public static ListNode solution(ListNode l1, ListNode l2) {
-        Deque<ListNode> stack1 = new LinkedList<>();
-        Deque<ListNode> stack2 = new LinkedList<>();
-        // 所有节点入栈
-        while (l1 != null) {
-            stack1.push(l1);
-            l1 = l1.next;
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+        // 创建虚拟头节点
+        ListNode dummy = new ListNode();
+        // 当前节点
+        ListNode cur = dummy;
+        // 进位
+        int carry = 0;
+        // 遍历两个链表
+        while (l1 != null || l2 != null) {
+            // 获取两个链表当前节点的值，如果为空则为0
+            int num1 = l1 != null ? l1.val : 0;
+            int num2 = l2 != null ? l2.val : 0;
+            // 计算当前节点的值和进位
+            int sum = (num1 + num2 + carry) % 10;
+            carry = (num1 + num2 + carry) / 10;
+            // 创建新节点并连接到当前节点
+            cur.next = new ListNode(sum);
+            // 移动到下一个节点
+            cur = cur.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
         }
-        while (l2 != null) {
-            stack2.push(l2);
-            l2 = l2.next;
+        // 处理最终的进位
+        if (carry != 0) {
+            cur.next = new ListNode(carry);
         }
+        return dummy.next;
+    }
 
-        int carry = 0; // 进位
-        ListNode cur = null; // 当前节点
-        while (!stack1.isEmpty() || !stack2.isEmpty()) {
-            int x = stack1.isEmpty() ? 0 : stack1.pop().val;
-            int y = stack2.isEmpty() ? 0 : stack2.pop().val;
-            ListNode next = cur; // 暂存当前节点
-            cur = new ListNode((x + y + carry) % 10); // 更新当前节点
-            cur.next = next; // 连接
-            carry = (x + y + carry) / 10; // 更新进位
+    public static void main(String[] args) {
+        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+        ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+        ListNode result = addTwoNumbers(l1, l2);
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
         }
-        // 最后判断进位
-        if (carry > 0) {
-            ListNode next = cur;
-            cur = new ListNode(carry);
-            cur.next = next;
-        }
-        return cur;
     }
 }
