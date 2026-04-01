@@ -1,6 +1,6 @@
 package com.company.brush.listNode;
 
-import static com.company.brush.listNode.ReverseList.reverseListWithWhile;
+import static com.company.brush.listNode.ReverseList.reverseListWithIteration;
 
 /**
  * @author: wangxinjian
@@ -18,7 +18,7 @@ public class IsPalindrome {
         ListNode half = findHalfNode(head);
         ListNode l1 = head;
         // 反转后半部分链表
-        ListNode l2 = reverseListWithWhile(half);
+        ListNode l2 = reverseListWithIteration(half);
         // 遍历比较
         while (l1 != null && l2 != null) {
             if (l1.val != l2.val) return false;

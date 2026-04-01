@@ -1,3 +1,5 @@
+package com.company.brush.listNode;
+
 /**
  * @author: Wxj
  * 24. 两两交换链表中的节点
@@ -8,42 +10,51 @@
  * <p>输出描述:
  * [2,1,4,3]
  */
-package com.company.brush.listNode;
-
 public class SwapPairs {
-    // 迭代
-    public ListNode solution1(ListNode head) {
+    public static ListNode swapPairsWithIteration(ListNode head) {
+        if (head == null || head.next == null) return head;
+        // 虚拟头节点
         ListNode dummy = new ListNode();
         dummy.next = head;
-        // 表示上一段的最后一个节点，方便连接
-        ListNode pre = dummy;
-        // 遍历，剩下的节点还剩余两个及以上才交换
-        while (pre.next != null && pre.next.next != null) {
-            // 第一个
-            ListNode first = pre.next;
-            // 第二个
-            ListNode second = pre.next.next;
-            // 交换位置
-            first.next = second.next;
-            second.next = first;
-            // 与之前已经交换的连接
-            pre.next = second;
-            // 遍历更新
-            pre = first;
+        // last指向已经交换好的最后一个节点
+        ListNode last = dummy;
+        // first指向待交换的两个节点中的第一个
+        ListNode first = head;
+        while (first != null && first.next != null) {
+            // next指向待交换的两个节点中的第二个
+            ListNode next = first.next;
+            // 交换两个节点
+            first.next = next.next;
+            next.next = first;
+            last.next = next;
+            // 更新last和first，右移执行下一组
+            last = first;
+            first = first.next;
         }
         return dummy.next;
     }
 
-    // 递归
-    public ListNode solution2(ListNode head) {
-        // 终止条件
-        if(head == null || head.next == null) return head;
-        // 记录第二个节点
+    public static ListNode swapPairsWithRecursion(ListNode head) {
+        // 递归终止条件
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // 待交换的两个节点中的第二个
         ListNode temp = head.next;
-        // 交换，指向下一段，并递归
-        head.next = solution2(temp.next);
+        // 递归调用，交换下一组节点，当前待交换的两个节点中的第一个指向下一组调用返回后的节点
+        head.next  = swapPairsWithRecursion(head.next.next);
+        // 第二个指向第一个
         temp.next = head;
-        // 返回原始链表的第二个节点（交换后成第一个了）
+        // 交换后返回第二个
         return temp;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3)));
+        ListNode result = swapPairsWithRecursion(head);
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
     }
 }

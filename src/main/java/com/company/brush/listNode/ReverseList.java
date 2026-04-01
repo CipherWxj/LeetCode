@@ -10,7 +10,7 @@ package com.company.brush.listNode;
  * [5，4，3，2，1]
  */
 public class ReverseList {
-    public static ListNode reverseListWithWhile(ListNode head) {
+    public static ListNode reverseListWithIteration(ListNode head) {
         // 上一个节点
         ListNode lastNode = null;
         while (head != null) {
