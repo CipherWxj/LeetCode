@@ -1,5 +1,9 @@
+package com.company.brush.listNode;
+
+import static com.company.brush.listNode.ReverseList.reverseListWithWhile;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 234. 回文链表
  * 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。
  * 如果是，返回 true ；否则，返回 false 。
@@ -8,45 +12,41 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.listNode;
-
 public class IsPalindrome {
-    public boolean solution(ListNode head) {
-        // 切分链表
-        // 分割成两条链表比较，奇偶可以忽略不考虑
-        // 奇数个节点中间节点必然相等
+    private static boolean isPalindrome(ListNode head) {
+        // 找到链表的中间节点
         ListNode half = findHalfNode(head);
         ListNode l1 = head;
-        ListNode l2 = reverseList(half);
-        while(l2 != null){
-            if(l1.val != l2.val) return false;
+        // 反转后半部分链表
+        ListNode l2 = reverseListWithWhile(half);
+        // 遍历比较
+        while (l1 != null && l2 != null) {
+            if (l1.val != l2.val) return false;
             l1 = l1.next;
             l2 = l2.next;
         }
         return true;
     }
 
-    // 找到链表的中点进行分割，返回后半部分
-    // 找到第 n/2 + 1 个节点，例如7（4），6（4）
-    public ListNode findHalfNode(ListNode head){
+    // 快慢指针找到中间节点
+    // 对于奇数个节点，slow 指向中间节点
+    // 对于偶数个节点，slow 指向中间两个节点的第二个
+    public static ListNode findHalfNode(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
-        while(fast != null && fast.next != null){
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
         return slow;
     }
 
-    // 反转链表
-    public ListNode reverseList(ListNode head){
-        ListNode last = null;
-        while(head != null){
-            ListNode next = head.next;
-            head.next = last;
-            last = head;
-            head = next;
-        }
-        return last;
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(2);
+        head.next.next.next.next = new ListNode(1);
+        System.out.println(isPalindrome(head));
     }
 }
