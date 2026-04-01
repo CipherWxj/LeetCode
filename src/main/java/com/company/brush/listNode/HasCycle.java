@@ -1,5 +1,7 @@
+package com.company.brush.listNode;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 141. 环形链表
  * 给你一个链表的头节点 head ，判断链表中是否有环。
  * 如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。
@@ -11,43 +13,27 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.listNode;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class HasCycle {
-    // 哈希表
-    public boolean solution1(ListNode head) {
-        Set<ListNode> set = new HashSet<>();
-        while (head != null) {
-            if (set.contains(head)) {
-                return true;
-            }
-            set.add(head);
-            head = head.next;
-        }
-        return false;
-    }
-
-    // 龟兔赛跑（快慢指针）
-    public boolean solution2(ListNode head) {
+    private static boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) return false;
-
+        // 快慢指针，快指针一次走两步，慢指针一次走一步
+        // 如果有环，快指针最终会追上慢指针，否则快指针会先到达链表末尾
         // 为了能让 while 执行，将 慢指针 设置为 头节点，快指针 设为 第二个节点！！！
         ListNode slow = head;
         ListNode fast = head.next;
-
-        // 两个指针没有相遇时一直遍历
-        while (slow != fast) {
-            // 快指针到最后还没有相遇说明没有环
+        while (fast != slow) {
             if (fast == null || fast.next == null) return false;
-
-            // 遍历
-            slow = slow.next; // 慢指针一次走一步
-            fast = fast.next.next; // 快指针一次走两步
+            fast = fast.next.next;
+            slow = slow.next;
         }
-        // 相遇
         return true;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = head.next;
+        System.out.println(hasCycle(head));
     }
 }
