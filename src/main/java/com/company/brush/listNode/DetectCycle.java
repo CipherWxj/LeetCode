@@ -1,5 +1,7 @@
+package com.company.brush.listNode;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 142. 环形链表 II
  * 给定一个链表的头节点 head ，返回链表开始入环的第一个节点。如果链表无环，则返回 null。
  * 如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。
@@ -11,53 +13,42 @@
  * <p>输出描述:
  * 返回索引为 1 的链表节点
  */
-package com.company.brush.listNode;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class DetectCycle {
-    // 哈希表
-    public ListNode solution1(ListNode head) {
-        Set<ListNode> set = new HashSet<>();
-        while (head != null) {
-            if (set.contains(head)) {
-                return head;
+    public static ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) return null;
+        // 快慢指针
+        // 假设链表中环外部分的长度为a。slow指针进入环后，又走了b的距离与fast相遇，剩余环内的距离为c：
+        // 此时，fast指针已经走完了环的n圈，因此它走过的总距离为：a+n(b+c)+b=a+(n+1)b+nc，slow指针走过的距离为：a+b，
+        // 由于fast指针的速度是slow指针速度的2倍，因此有：a+(n+1)b+nc=2(a+b)，变形可得a=c+(n-1)(b+c)，
+        // 即从相遇点到环入口点的距离c加上n-1圈环的长度b+c，恰好等于从头节点到环入口点的距离a。
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null) {
+            if (fast.next != null) {
+                fast = fast.next.next;
+            } else { // 没有环
+                return null;
             }
-            set.add(head);
-            head = head.next;
+            slow = slow.next;
+            // 快慢指针相遇，说明有环，slow指针继续在环内走c+(n-1)(b+c)，search指针从头节点开始走a，相遇点即为环入口点
+            if (slow == fast) {
+                ListNode search = head;
+                while (search != slow) {
+                    search = search.next;
+                    slow = slow.next;
+                }
+                return search;
+            }
         }
         return null;
     }
 
-    // 龟兔赛跑（快慢指针）
-    public ListNode solution2(ListNode head) {
-
-        // 为了能让 while 执行，将 慢指针 设置为 头节点，快指针 设为 第二个节点！！！
-        ListNode slow = head;
-        ListNode fast = head;
-
-        // 两个指针没有相遇时一直遍历
-        while (true) {
-            // 快指针到最后还没有相遇说明没有环
-            if (fast == null || fast.next == null) return null;
-
-            // 遍历
-            slow = slow.next; // 慢指针一次走一步
-            fast = fast.next.next; // 快指针一次走两步
-
-            // 相遇
-            if (slow == fast) break;
-        }
-
-        // 有环，则找寻入环节点位置
-        // 数量关系需要自己推导
-        ListNode search = head;
-
-        while (search != slow) {
-            search = search.next;
-            slow = slow.next;
-        }
-        return slow;
+    public static void main(String[] args) {
+        ListNode head = new ListNode(3);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(0);
+        head.next.next.next = new ListNode(-4);
+        head.next.next.next.next = head.next;
+        System.out.println(detectCycle(head).val);
     }
 }
