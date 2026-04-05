@@ -22,7 +22,7 @@ public class DailyTemperatures {
         Deque<Integer> decStack = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             // 如果栈不为空且当前温度大于栈顶索引对应的温度，说明找到了栈顶索引的下一个更高温度，直到栈为空或当前温度小于等于栈顶索引对应的温度
-            while (!decStack.isEmpty() && temperatures[decStack.peek()] < temperatures[i]) {
+            while (!decStack.isEmpty() && temperatures[i] > temperatures[decStack.peek()]) {
                 // 栈顶索引出栈
                 int j = decStack.pop();
                 // 计算栈顶索引下一个更高温度出现在几天后
