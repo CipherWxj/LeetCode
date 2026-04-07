@@ -1,5 +1,9 @@
+package com.company.brush.dynamicProgramming;
+
+import java.util.Arrays;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 45. 跳跃游戏 II
  * 给你一个非负整数数组 nums ，你最初位于数组的第一个位置。
  * 数组中的每个元素代表你在该位置可以跳跃的最大长度。
@@ -10,41 +14,26 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.dynamicProgramming;
-
-import java.util.Arrays;
-
 public class Jump {
-    // 动态规划
-    public int solution(int[] nums) {
-        int n = nums.length;
-        int[] dp = new int[n];
-        Arrays.fill(dp, n);
+
+    public static int jump(int[] nums) {
+        // 初始化动态数组，dp[i]表示到达第i位需要跳跃的最小次数
+        int[] dp = new int[nums.length];
+        // 初始化数组中存储可能的最大值
+        Arrays.fill(dp, nums.length - 1);
         dp[0] = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j <= nums[i]; j++) {
-                if (i + j < n) {
-                    dp[i + j] = Math.min(dp[i] + 1, dp[i + j]);
-                }
+        for (int i = 0; i < nums.length; i++) {
+            // 以i为跳板，计算下一步能到达的位置时的最小跳跃次数，即i+1到i+nums[i]位置
+            for (int j = i + 1; j <= i + nums[i]; j++) {
+                if (j > nums.length - 1) break;
+                dp[j] = Math.min(dp[j], dp[i] + 1);
             }
         }
-        return dp[n - 1];
+        return dp[nums.length - 1];
     }
 
-    // 贪心算法
-    public int solution2(int[] nums) {
-        int n = nums.length;
-        int step = 0; // 步数
-        int maxPos = 0; // 下一步能跳到的最远位置
-        int end = 0; // 当前所能到达的最远位置
-        for (int i = 0; i < n; i++) {
-            maxPos = Math.max(maxPos, i + nums[i]); // 更新
-            // 到达当前阶段能到的最远位置
-            if (i == end) {
-                end = maxPos; // 更新下一阶段能到的最远位置
-                step++; // 跳跃次数+1
-            }
-        }
-        return step;
+    public static void main(String[] args) {
+        int[] nums = {2, 3, 1, 1, 4};
+        System.out.println(jump(nums));
     }
 }

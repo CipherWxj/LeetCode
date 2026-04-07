@@ -20,7 +20,7 @@ public class CanJump {
         for (int i = 0; i < nums.length; i++) {
             // 如果第i位能到达，判断下一步能到达的位置，即i+1到i+nums[i]位置
             if (dp[i]) {
-                for (int j = i; j <= i + nums[i]; j++) {
+                for (int j = i + 1; j <= i + nums[i]; j++) {
                     // 防止越界
                     if (j > nums.length - 1) break;
                     dp[j] = true;
