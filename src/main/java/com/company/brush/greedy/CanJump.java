@@ -1,4 +1,5 @@
-package com.company.brush.dynamicProgramming;
+package com.company.brush.greedy;
+
 
 /**
  * @author: wangxinjian
@@ -14,20 +15,17 @@ package com.company.brush.dynamicProgramming;
  */
 public class CanJump {
     public static boolean canJump(int[] nums) {
-        // 初始化动态数组，dp[i]表示第i位是否能到达，true：能
-        boolean[] dp = new boolean[nums.length];
-        dp[0] = true;
+        // maxIndex表示能到达的最远位置
+        int maxIndex = 0;
         for (int i = 0; i < nums.length; i++) {
-            // 如果第i位能到达，判断下一步能到达的位置，即i+1到i+nums[i]位置
-            if (dp[i]) {
-                for (int j = i; j <= i + nums[i]; j++) {
-                    // 防止越界
-                    if (j > nums.length - 1) break;
-                    dp[j] = true;
-                }
+            // 如果当前位置i小于等于能到达的最远位置maxIndex，说明可以以当前位置为跳板，跳到更远的位置
+            if (i <= maxIndex) {
+                maxIndex = Math.max(maxIndex, i + nums[i]);
             }
+            // 直到能到达的最远位置大于等于数组最后一个位置，返回true
+            if (maxIndex >= nums.length - 1) return true;
         }
-        return dp[nums.length - 1];
+        return false;
     }
 
     public static void main(String[] args) {
