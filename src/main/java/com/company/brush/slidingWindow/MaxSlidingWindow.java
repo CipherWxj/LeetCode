@@ -18,7 +18,7 @@ public class MaxSlidingWindow {
      * 优先队列
      */
     private static int[] maxSlidingWindowWithPriorityQueue(int[] nums, int k) {
-        // 优先队列，存储的是数组，数组第一位o[0]为nums中遍历到的数，0[1]为数0[0]在nums中的位置
+        // 优先队列，存储的是数组，数组第一位o[0]为nums中遍历到的数，o[1]为数o[0]在nums中的位置
         PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(new Comparator<int[]>() {
             // 重写比较器，
             // 当两个数不相等时，根据数从大到小排列（大根堆）: o2[0] - o1[0]
