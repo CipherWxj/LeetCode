@@ -44,4 +44,11 @@ public class MaxDepth {
         }
         return max;
     }
+
+    public static void main(String[] args) {
+        Integer[] nums = {3, 9, 20, null, null, 15, 7};
+        TreeNode root = new TreeNode(nums);
+        System.out.println(maxDepthDFS(root));
+        System.out.println(maxDepthBFS(root));
+    }
 }

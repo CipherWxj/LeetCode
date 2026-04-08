@@ -1,5 +1,12 @@
+package com.company.brush.tree;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import static com.company.brush.tree.InfixOrderTraversal.infixOrderTraversalWithIteration;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 226. 翻转二叉树
  * 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
  * <p>输入描述:
@@ -7,31 +14,23 @@
  * <p>输出描述:
  * [4,7,2,9,6,3,1]
  */
-package com.company.brush.tree;
-
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class InvertTree {
-    // dfs
-    public TreeNode dfs(TreeNode root) {
+
+    public static TreeNode invertTreeWithRecursion(TreeNode root) {
         if (root == null) return null;
         // 从根节点向下遍历，就是从叶节点开始交换，逐层往上
         // 指针 left、right 分别指向转换后的子节点
-        TreeNode left = dfs(root.left);
-        TreeNode right = dfs(root.right);
+        TreeNode left = invertTreeWithRecursion(root.left);
+        TreeNode right = invertTreeWithRecursion(root.right);
         // 交换
         root.left = right;
         root.right = left;
         return root;
     }
 
-    // bfs
-    public TreeNode bfs(TreeNode root) {
-        // 排除特殊情况的干扰
-        if (root == null) {
-            return null;
-        }
+    public static TreeNode invertTreeWithIteration(TreeNode root) {
+        if (root == null) return null;
+        // 初始化队列
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         // 层序遍历
@@ -54,5 +53,12 @@ public class InvertTree {
             }
         }
         return root;
+    }
+
+    public static void main(String[] args) {
+        Integer[] nums = {4, 2, 7, 1, 3, 6, 9};
+        TreeNode root = new TreeNode(nums);
+        System.out.println(infixOrderTraversalWithIteration(invertTreeWithRecursion(root)));
+        System.out.println(infixOrderTraversalWithIteration(invertTreeWithIteration(root)));
     }
 }
