@@ -1,5 +1,9 @@
+package com.company.brush.tree;
+
+import java.util.*;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 94. 二叉树的中序遍历
  * 给定一个二叉树的根节点 root ，返回它的 中序 遍历。
  * <p>输入描述:
@@ -7,64 +11,43 @@
  * <p>输出描述:
  * [1,3,2]
  */
-package com.company.brush.tree;
-
-import java.util.*;
-
-public class InfixOrderTraversal {
-    static List<Integer> res = new ArrayList<>(); // 为了方便添加元素，将res放在方法外进行初始化
+class InfixOrderTraversal {
+    // 为了方便添加元素，将res放在方法外进行初始化，这样就不需要在方法参数中传递res了
+    static List<Integer> resStatic = new ArrayList<>();
 
     // 递归
-    public static List<Integer> solution(TreeNode root) {
-        if (root == null) return res;
-        // 遍历左子树
-        if (root.left != null) {
-            solution(root.left);
-        }
-        res.add(root.val);
-        // 遍历右子树
-        if (root.right != null) {
-            solution(root.right);
-        }
-        return res;
+    public static List<Integer> infixOrderTraversalWithRecursion(TreeNode root) {
+        if (root == null) return resStatic;
+        infixOrderTraversalWithRecursion(root.left);
+        resStatic.add(root.val);
+        infixOrderTraversalWithRecursion(root.right);
+        return resStatic;
     }
 
     // 迭代
-    public static List<Integer> solution1(TreeNode root) {
-        // 初始化一个栈（递归隐式维护了函数栈）
-        // 用队列维护栈效率更高
+    public static List<Integer> infixOrderTraversalWithIteration(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        // 初始化栈，存储遍历到的节点
         Deque<TreeNode> stack = new LinkedList<>();
         while (root != null || !stack.isEmpty()) {
             // 一直遍历到左子树最底层
             while (root != null) {
-                stack.push(root);
+                stack.addLast(root);
                 root = root.left;
             }
-            // 依次出栈，返回
-            root = stack.pop();
+            // 左子树为空，根节点出栈，添加到结果中
+            root = stack.removeLast();
             res.add(root.val);
-            // 再去遍历右子树
+            // 遍历右子树
             root = root.right;
         }
         return res;
     }
 
-
     public static void main(String[] args) {
-        System.out.println("请输入一个数组形式的【层序遍历】二叉树：");
-        Scanner sc = new Scanner(System.in);
-        System.out.print("root= ");
-        String s = sc.nextLine();
-        s = s.substring(1, s.length() - 1);
-        String[] str = s.split(",");
-        Integer[] arr = new Integer[str.length];
-        for (int i = 0; i < arr.length; i++) {
-            if (str[i].equals("")) {
-                arr[i] = null;
-            } else arr[i] = Integer.parseInt(str[i]);
-        }
-        CreatBinaryTree Tree = new CreatBinaryTree(arr);
-        TreeNode root = Tree.layerCreat(0);
-        System.out.println(solution(root));
+        Integer[] nums = {1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9};
+        TreeNode root = new TreeNode(nums);
+        System.out.println(infixOrderTraversalWithRecursion(root));
+        System.out.println(infixOrderTraversalWithIteration(root));
     }
 }
