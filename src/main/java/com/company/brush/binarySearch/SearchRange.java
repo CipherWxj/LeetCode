@@ -1,5 +1,7 @@
+package com.company.brush.binarySearch;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 34. 在排序数组中查找元素的第一个和最后一个位置
  * 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。
  * 请你找出给定目标值在数组中的开始位置和结束位置。
@@ -10,51 +12,50 @@
  * <p>输出描述:
  * [3,4]
  */
-package com.company.brush.binarySearch;
-
 public class SearchRange {
-    public int[] search(int[] nums, int target) {
-        int r = helperR(nums, target);
-        int l = helperL(nums, target);
-        if (l <= r && r < nums.length && nums[l] == target && nums[r] == target) {
-            return new int[]{l, r};
-        }
+    public int[] searchRange(int[] nums, int target) {
+        if (nums.length == 0) return new int[]{-1, -1};
+        int lowRange = searchLowRange(nums, target);
+        int highRange = searchHighRange(nums, target);
+        // 判断下标是否越界，以及下标位置的值是否等于target
+        if (lowRange <= highRange && highRange < nums.length && nums[lowRange] == target && nums[highRange] == target)
+            return new int[]{lowRange, highRange};
         return new int[]{-1, -1};
     }
 
-    // 二分法查找 target 的右边界
-    public int helperR(int[] nums, int tar) {
+    // 查找下限
+    public int searchLowRange(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
-        // 闭区间[left,right]上的二分
         while (left <= right) {
-            int m = (left + right) / 2;
-            if (nums[m] == tar) { // 相等，左边界继续右移，因为是找右边界
-                left = m + 1;
-            } else if (nums[m] < tar) {
-                left = m + 1;
-            } else {
-                right = m - 1;
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else { // 相等继续向左寻找
+                right = mid - 1;
             }
         }
-        // 最后 left 停在 最后一个tar 的下一位
-        return left - 1;
+        // 最后一次比较 mid = left = right，
+        // 如果 nums[mid] == target，right = mid - 1，所以返回right + 1
+        return right + 1;
     }
 
-    // 二分法查找 target 的左边界
-    public int helperL(int[] nums, int tar) {
+    // 查找上限
+    public int searchHighRange(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
-        // 闭区间[left,right]上的二分
         while (left <= right) {
-            int m = (left + right) / 2;
-            if (nums[m] == tar) { // 相等，右边界继续左移，因为是找左边界
-                right = m - 1;
-            } else if (nums[m] < tar) {
-                left = m + 1;
-            } else {
-                right = m - 1;
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > target) {
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else { // 相等继续向右寻找
+                left = mid + 1;
             }
         }
-        // 最后 right 停在 第一个tar 的前一位
-        return right + 1;
+        // 最后一次比较 mid = left = right，
+        // 如果 nums[mid] == target，left = mid + 1，所以返回left - 1
+        return left - 1;
     }
 }
