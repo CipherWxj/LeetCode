@@ -14,7 +14,7 @@
  * <p>输出描述:
  * 0
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 public class FindMinInRotated {
     // 旋转排序数组的性质：若无重复元素，旋转之后一定有 最左侧元素 大于 最右侧元素

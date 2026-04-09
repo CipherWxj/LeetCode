@@ -9,7 +9,7 @@
  * <p>输出描述:
  * 2
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 // 前提条件：该数组元素个数为奇数
 public class SingleNonDuplicate {

@@ -10,7 +10,7 @@
  * <p>输出描述:
  * [3,4]
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 public class SearchRange {
     public int[] search(int[] nums, int target) {

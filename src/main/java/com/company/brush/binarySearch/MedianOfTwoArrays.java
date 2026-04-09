@@ -8,7 +8,7 @@
  * <p>输出描述:
  * 2.0
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 import java.util.Arrays;
 import java.util.Scanner;

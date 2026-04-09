@@ -11,7 +11,7 @@
  * <p>输出描述:
  * 4
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 import java.util.Scanner;
 

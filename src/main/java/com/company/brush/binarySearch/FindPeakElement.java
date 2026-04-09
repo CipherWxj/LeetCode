@@ -10,7 +10,7 @@
  * <p>输出描述:
  * 1 或 5
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 public class FindPeakElement {
     //在题目描述中出现了 nums[-1] = nums[n] = -∞，

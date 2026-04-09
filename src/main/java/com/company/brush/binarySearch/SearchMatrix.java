@@ -11,7 +11,7 @@
  * <p>输出描述:
  * true
  */
-package com.company.brush.search.binarysearch;
+package com.company.brush.binarySearch;
 
 public class SearchMatrix {
     public boolean solution(int[][] matrix, int target) {
