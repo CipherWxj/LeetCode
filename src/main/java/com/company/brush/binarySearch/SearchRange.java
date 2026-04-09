@@ -1,5 +1,7 @@
 package com.company.brush.binarySearch;
 
+import java.util.Arrays;
+
 /**
  * @author: wangxinjian
  * 34. 在排序数组中查找元素的第一个和最后一个位置
@@ -13,7 +15,7 @@ package com.company.brush.binarySearch;
  * [3,4]
  */
 public class SearchRange {
-    public int[] searchRange(int[] nums, int target) {
+    public static int[] searchRange(int[] nums, int target) {
         if (nums.length == 0) return new int[]{-1, -1};
         int lowRange = searchLowRange(nums, target);
         int highRange = searchHighRange(nums, target);
@@ -24,7 +26,7 @@ public class SearchRange {
     }
 
     // 查找下限
-    public int searchLowRange(int[] nums, int target) {
+    public static int searchLowRange(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
@@ -42,7 +44,7 @@ public class SearchRange {
     }
 
     // 查找上限
-    public int searchHighRange(int[] nums, int target) {
+    public static int searchHighRange(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
@@ -57,5 +59,11 @@ public class SearchRange {
         // 最后一次比较 mid = left = right，
         // 如果 nums[mid] == target，left = mid + 1，所以返回left - 1
         return left - 1;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {5, 7, 7, 8, 8, 10};
+        int target = 8;
+        System.out.println(Arrays.toString(searchRange(nums, target)));
     }
 }
