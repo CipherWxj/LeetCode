@@ -12,16 +12,19 @@ import java.util.*;
  * [1,3,2]
  */
 class InfixOrderTraversal {
-    // 为了方便添加元素，将res放在方法外进行初始化，这样就不需要在方法参数中传递res了
-    static List<Integer> resStatic = new ArrayList<>();
+
+    public static List<Integer> infixOrderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        return infixOrderTraversalWithRecursion(root, res);
+    }
 
     // 递归
-    public static List<Integer> infixOrderTraversalWithRecursion(TreeNode root) {
-        if (root == null) return resStatic;
-        infixOrderTraversalWithRecursion(root.left);
-        resStatic.add(root.val);
-        infixOrderTraversalWithRecursion(root.right);
-        return resStatic;
+    public static List<Integer> infixOrderTraversalWithRecursion(TreeNode root, List<Integer> res) {
+        if (root == null) return res;
+        infixOrderTraversalWithRecursion(root.left, res);
+        res.add(root.val);
+        infixOrderTraversalWithRecursion(root.right, res);
+        return res;
     }
 
     // 迭代
@@ -32,11 +35,11 @@ class InfixOrderTraversal {
         while (root != null || !stack.isEmpty()) {
             // 一直遍历到左子树最底层
             while (root != null) {
-                stack.addLast(root);
+                stack.push(root);
                 root = root.left;
             }
             // 左子树为空，根节点出栈，添加到结果中
-            root = stack.removeLast();
+            root = stack.pop();
             res.add(root.val);
             // 遍历右子树
             root = root.right;
@@ -47,7 +50,7 @@ class InfixOrderTraversal {
     public static void main(String[] args) {
         Integer[] nums = {1, 2, 3, 4, 5, null, 8, null, null, 6, 7, 9};
         TreeNode root = new TreeNode(nums);
-        System.out.println(infixOrderTraversalWithRecursion(root));
+        System.out.println(infixOrderTraversal(root));
         System.out.println(infixOrderTraversalWithIteration(root));
     }
 }
