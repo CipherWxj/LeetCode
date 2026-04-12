@@ -1,5 +1,10 @@
+package com.company.brush.backtracking;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @author: Wxj
+ * @author: wangxinjian
  * 46. 全排列
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。
  * 你可以 按任意顺序 返回答案。
@@ -8,47 +13,39 @@
  * <p>输出描述:
  * [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  */
-package com.company.brush.backtracking;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Permute {
-    public static List<List<Integer>> solution(int[] nums) {
+    public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        boolean[] visited = new boolean[nums.length]; // 记录是否已经遍历，初始全为 false
-        backtrack(nums, visited, res, new ArrayList<Integer>());
+        backtrack(nums, res, 0);
         return res;
     }
 
-    public static void backtrack(int[] nums, boolean[] visited, List<List<Integer>> res, List<Integer> ans) {
-        // 返回
-        if (ans.size() == nums.length) {
-            res.add(new ArrayList<>(ans));
+    public static void backtrack(int[] nums, List<List<Integer>> res, int index) {
+        // 终止条件：排列长度等于数组长度，将当前排列加入结果集
+        if (index == nums.length) {
+            List<Integer> ans = new ArrayList<Integer>();
+            for (int num : nums) {
+                ans.add(num);
+            }
+            res.add(ans);
         }
-        // 遍历搜索，每一次遍历都从 数组的第一个元素 开始，这一轮已经遍历的元素跳过
-        for (int i = 0; i < nums.length; i++) {
-            if (visited[i]) continue; // 跳过已经遍历的元素
-            visited[i] = true; // 标记
-            ans.add(nums[i]); // 添加
-            backtrack(nums, visited, res, ans); // dfs
-            // 回溯
-            ans.remove(ans.size() - 1);
-            visited[i] = false;
+        // 遍历数组，进行交换和递归
+        for (int i = index; i < nums.length; i++) {
+            swap(nums, index, i);
+            backtrack(nums, res, index + 1);
+            // 恢复
+            swap(nums, index, i);
         }
     }
 
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("请输入一个数组：");
-        String s = sc.nextLine();
-        s = s.substring(1, s.length() - 1);
-        String[] str = s.split(",");
-        int[] nums = new int[str.length];
-        for (int i = 0; i < str.length; i++) {
-            nums[i] = Integer.parseInt(str[i]);
-        }
-        System.out.println(solution(nums));
+        int[] nums = {1, 2, 3};
+        System.out.println(permute(nums));
     }
 }
